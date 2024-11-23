@@ -169,7 +169,7 @@ const HomePage = () => {
         Preferred Activities: ${formData.preferredActivities.join(', ')}
       `;
   
-      const response = await fetch('http://localhost:5000/api/send-registration', {
+      const response = await fetch('/api/send-registration', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
