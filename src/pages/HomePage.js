@@ -175,7 +175,7 @@ const HomePage = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          to: '24me01040@iitbbs.ac.in', // Replace with the admin's email
+          to: '24me01040@iitbbs.ac.in', 
           subject: 'New NSS Volunteer Registration',
           content: emailContent,
         }),
