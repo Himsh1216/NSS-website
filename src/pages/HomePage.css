@@ -1,0 +1,250 @@
+/* Hero Section */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
+}
+
+/* Stats Section */
+.py-5 {
+  padding-top: 3rem !important;
+  padding-bottom: 3rem !important;
+}
+
+.bg-light {
+  background-color: #f8f9fa !important;
+}
+
+/* Card Animations */
+.card {
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  border: none;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Event Cards */
+.card .card-img-overlay {
+  transition: all 0.3s ease;
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.8));
+}
+
+.card:hover .card-img-overlay {
+  opacity: 0.7;
+}
+
+.card:hover .card-img {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+/* Event Overlay Classes */
+.bg-primary {
+  background-color: rgba(13, 110, 253, 0.85) !important;
+}
+
+.bg-info {
+  background-color: rgba(13, 202, 240, 0.85) !important;
+}
+
+.overlay-green {
+  background-color: rgba(25, 135, 84, 0.85) !important;
+}
+
+.overlay-orange {
+  background-color: rgba(253, 126, 20, 0.85) !important;
+}
+
+.overlay-blue-dark {
+  background-color: rgba(0, 31, 63, 0.85) !important;
+}
+
+.overlay-green-dark {
+  background-color: rgba(0, 77, 64, 0.85) !important;
+}
+
+/* Modal Styles */
+.modal {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.modal-header {
+  border-bottom: none;
+  padding: 1.5rem;
+}
+
+.modal-body {
+  padding: 0;
+}
+
+/* Event Modal Image */
+.event-image-container {
+  position: relative;
+  overflow: hidden;
+  max-height: 400px;
+}
+
+.event-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.modal:hover .event-image {
+  transform: scale(1.05);
+}
+
+/* Registration Form Styles */
+.modal-dialog-scrollable {
+  max-height: 90vh;
+}
+
+.form-label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.form-control, .form-select {
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+  padding: 0.75rem 1rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #86b7fe;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.form-check-input {
+  cursor: pointer;
+}
+
+.form-check-label {
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Button Styles */
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.btn-primary:hover {
+  background-color: #0b5ed7;
+  border-color: #0a58ca;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+  background-color: #5c636a;
+  border-color: #565e64;
+  transform: translateY(-2px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .modal-dialog {
+    margin: 1rem;
+  }
+  
+  .event-image-container {
+    max-height: 300px;
+  }
+  
+  .form-label {
+    margin-bottom: 0.25rem;
+  }
+  
+  .modal-body {
+    padding: 1rem;
+  }
+  
+  .btn {
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* Animation Keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Modal Animation */
+.modal-content {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Form Feedback */
+.invalid-feedback {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.valid-feedback {
+  color: #198754;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* Loading State */
+.btn-loading {
+  position: relative;
+  color: transparent !important;
+}
+
+.btn-loading::after {
+  content: '';
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  top: 50%;
+  left: 50%;
+  margin: -0.5rem 0 0 -0.5rem;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  border-right-color: transparent;
+  animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

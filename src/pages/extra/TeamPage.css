@@ -1,0 +1,84 @@
+.team-page {
+  background-color: #f8f9fa;
+  padding: 50px 0;
+}
+
+.section-heading {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 40px;
+  font-weight: bold;
+  color: #333;
+}
+
+.team-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.team-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.team-image {
+  width: 100%; /* Ensures full width of the parent container */
+  height: 250px; /* Set a fixed height to ensure consistency across images */
+  object-fit: cover; /* Ensures the image is scaled and cropped to fill the container while maintaining its aspect ratio */
+  border-bottom: 5px solid #007bff;
+}
+
+.team-content {
+  padding: 20px;
+}
+
+.team-name {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.team-role {
+  font-size: 1rem;
+  color: #555;
+  font-style: italic;
+}
+
+/* Style for subsection headings (centered with underline) */
+.subsection-heading {
+  text-align: center; /* Center the text */
+  font-size: 1.75rem; /* Adjust font size for subsections */
+  font-weight: bold; /* Make the text bold */
+  border-bottom: 2px solid #007bff; /* Add a custom underline in Bootstrap primary color */
+  display: inline-block; /* Ensure underline is only as wide as the text */
+  padding-bottom: 5px; /* Add space between the text and the underline */
+  margin-bottom: 20px; /* Add some spacing below the subheading */
+  color: #333; /* Set text color */
+  width: 100%; /* Ensure full-width for centering in Bootstrap */
+}
+
+/* Optional: Flexbox centering */
+.subsection-heading-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .team-card {
+    margin-bottom: 20px;
+  }
+
+  .section-heading {
+    font-size: 2rem;
+  }
+
+  .subsection-heading {
+    font-size: 1.5rem; /* Adjust font size for smaller screens */
+  }
+}
