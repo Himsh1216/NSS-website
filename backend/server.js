@@ -22,8 +22,12 @@ try {
 
 // Middleware
 app.use(cors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:3000',
-    methods: ['POST', 'GET'],
+    origin: [
+    process.env.FRONTEND_URL,
+    'http://localhost:3000',
+    'https://nss-website-iota.vercel.app'
+    ],
+    methods: ['POST', 'GET', 'OPTIONS'],
     credentials: true
 }));
 
@@ -89,7 +93,7 @@ app.get('/test-sendgrid', async (req, res) => {
 });
 
 // Registration endpoint
-app.post('/api/send-registration', async (req, res) => {
+app.post('/send-registration', async (req, res) => {
     try {
         const { to, subject, content } = req.body;
 
