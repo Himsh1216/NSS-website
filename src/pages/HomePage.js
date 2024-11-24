@@ -177,9 +177,9 @@ const HomePage = () => {
       Preferred Activities: ${formData.preferredActivities.join(', ')}
     `;
 
-    console.log('Sending request to:', '/api/send-registration'); // Debug log
+    console.log('Sending request to:', '/send-registration'); // Debug log
 
-    const response = await fetch('/api/send-registration', {
+    const response = await fetch('/send-registration', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
