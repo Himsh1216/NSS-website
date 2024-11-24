@@ -151,60 +151,86 @@ const HomePage = () => {
     }));
   };
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const emailContent = `
-        New NSS Volunteer Registration:
-        
-        Name: ${formData.name}
-        Email: ${formData.email}
-        Phone: ${formData.phone}
-        Occupation: ${formData.occupation}
-        Address: ${formData.address}
-        
-        Reason for Joining: ${formData.reason}
-        
-        Previous Experience: ${formData.experience}
-        Availability: ${formData.availability}
-        Preferred Activities: ${formData.preferredActivities.join(', ')}
-      `;
+  e.preventDefault();
   
-      const response = await fetch('/api/send-registration', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          to: '24me01040@iitbbs.ac.in', 
-          subject: 'New NSS Volunteer Registration',
-          content: emailContent,
-        }),
-      });
-  
-      if (response.ok) {
-        alert('Thank you for registering! We will contact you soon.');
-        setShowRegistrationForm(false);
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          occupation: '',
-          address: '',
-          reason: '',
-          interests: [],
-          experience: '',
-          availability: '',
-          preferredActivities: [],
-        });
-      } else {
-        throw new Error('Failed to send registration');
-      }
-    } catch (error) {
-      alert('There was an error submitting your registration. Please try again.');
-      console.error('Registration error:', error);
+  try {
+    console.log('Starting form submission...'); // Debug log
+
+    // Basic validation
+    if (!formData.name || !formData.email || !formData.phone || !formData.occupation) {
+      throw new Error('Please fill in all required fields');
     }
-  };
-  
+
+    const emailContent = `
+      New NSS Volunteer Registration:
+      
+      Name: ${formData.name}
+      Email: ${formData.email}
+      Phone: ${formData.phone}
+      Occupation: ${formData.occupation}
+      Address: ${formData.address}
+      
+      Reason for Joining: ${formData.reason}
+      
+      Previous Experience: ${formData.experience}
+      Availability: ${formData.availability}
+      Preferred Activities: ${formData.preferredActivities.join(', ')}
+    `;
+
+    console.log('Sending request to:', '/api/send-registration'); // Debug log
+
+    const response = await fetch('/api/send-registration', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        to: '24me01040@iitbbs.ac.in',
+        subject: 'New NSS Volunteer Registration',
+        content: emailContent,
+      }),
+    });
+
+    console.log('Response status:', response.status); // Debug log
+    
+    const data = await response.json();
+    console.log('Response data:', data); // Debug log
+
+    if (!response.ok) {
+      throw new Error(data.message || 'Failed to send registration');
+    }
+
+    // Handle success
+    alert('Thank you for registering! We will contact you soon.');
+    setShowRegistrationForm(false);
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      occupation: '',
+      address: '',
+      reason: '',
+      interests: [],
+      experience: '',
+      availability: '',
+      preferredActivities: [],
+    });
+
+  } catch (error) {
+    console.error('Detailed error:', {
+      message: error.message,
+      stack: error.stack,
+      name: error.name
+    });
+    
+    // More informative error message to user
+    if (error.message.includes('NetworkError') || error.message.includes('Failed to fetch')) {
+      alert('Network error: Please check your internet connection and try again.');
+    } else {
+      alert(`Registration error: ${error.message}. Please try again or contact support.`);
+    }
+  }
+};
 
   return (
     <div className="min-vh-100">
