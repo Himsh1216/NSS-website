@@ -38,11 +38,7 @@ app.use(bodyParser.json({ limit: '10kb' }));
 // Static file serving
 app.use(express.static(path.join(__dirname, '../build')));
 
-// API route handler for /api prefix
-app.use('/api/*', (req, res, next) => {
-    req.url = req.url.replace('/api/', '/');
-    next();
-});
+
 
 // Request logging middleware
 app.use((req, res, next) => {
