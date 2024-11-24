@@ -17,21 +17,32 @@ try {
     console.log('SendGrid initialization successful');
 } catch (error) {
     console.error('SendGrid initialization failed:', error.message);
-    process.exit(1); // Exit if SendGrid isn't configured properly
+    process.exit(1);
 }
 
-// Middleware
+// Enhanced CORS configuration
 app.use(cors({
     origin: [
-    process.env.FRONTEND_URL,
-    'http://localhost:3000',
-    'https://nss-website-iota.vercel.app'
+        process.env.FRONTEND_URL,
+        'http://localhost:3000',
+        'https://nss-website-iota.vercel.app',
+        /\.vercel\.app$/
     ],
-    methods: ['POST', 'GET', 'OPTIONS'],
-    credentials: true
+    methods: ['POST', 'GET', 'OPTIONS', 'PUT', 'DELETE'],
+    credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
 }));
 
 app.use(bodyParser.json({ limit: '10kb' }));
+
+// Static file serving
+app.use(express.static(path.join(__dirname, '../build')));
+
+// API route handler for /api prefix
+app.use('/api/*', (req, res, next) => {
+    req.url = req.url.replace('/api/', '/');
+    next();
+});
 
 // Request logging middleware
 app.use((req, res, next) => {
@@ -95,6 +106,7 @@ app.get('/test-sendgrid', async (req, res) => {
 // Registration endpoint
 app.post('/send-registration', async (req, res) => {
     try {
+        console.log('Received registration request');
         const { to, subject, content } = req.body;
 
         // Validate request
@@ -107,6 +119,10 @@ app.post('/send-registration', async (req, res) => {
                     received: Object.keys(req.body)
                 }
             });
+        }
+
+        if (!process.env.VERIFIED_SENDER_EMAIL) {
+            throw new Error('Sender email not configured');
         }
 
         // Prepare email with enhanced formatting
@@ -131,8 +147,16 @@ app.post('/send-registration', async (req, res) => {
             `
         };
 
+        console.log('Sending email with configuration:', {
+            to: msg.to,
+            from: msg.from.email,
+            subject: msg.subject
+        });
+
         // Send email
         const response = await sgMail.send(msg);
+
+        console.log('Email sent successfully:', response[0].statusCode);
 
         // Send success response
         res.status(200).json({
@@ -158,6 +182,11 @@ app.post('/send-registration', async (req, res) => {
             }
         });
     }
+});
+
+// Catch-all route for React app
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../build/index.html'));
 });
 
 // Error handling middleware
@@ -198,3 +227,5 @@ process.on('uncaughtException', (error) => {
         process.exit(1);
     });
 });
+
+module.exports = app;
