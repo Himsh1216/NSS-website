@@ -30,6 +30,7 @@ function App() {
         <Route path="/environmental_initiatives" element={<EnvironmentalInitiatives />} />
         </Routes>
       <Footer />
+      <Analytics />
     </div>
   );
 }

@@ -32,32 +32,18 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Google Drive Upload Section */}
-          <div className="col-md-4">
-            <h5>Upload Photos</h5>
-            <p>
-              <a 
-                href="https://drive.google.com/drive/u/1/folders/1xgWFDWiDJzItQ1enP9rZ7zDFZ2ISo96E" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-white"
-              >
-                Upload Events Photos Here
-              </a>
-            </p>
-          </div>
         </div>
 
         {/* Social Media Icons Section */}
         <div className="row justify-content-center pt-4">
           <div className="col-md-6 text-center">
-            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="social-icon">
+            <a href="https://www.facebook.com/NSSIITBhubaneswar/" target="_blank" rel="noopener noreferrer" className="social-icon">
               <i className="fab fa-facebook fa-2x"></i>
             </a>
             <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" className="social-icon">
               <i className="fab fa-twitter fa-2x"></i>
             </a>
-            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="social-icon">
+            <a href="https://www.instagram.com/explore/locations/1087982591342163/nss-iit-bhubaneswar/" target="_blank" rel="noopener noreferrer" className="social-icon">
               <i className="fab fa-instagram fa-2x"></i>
             </a>
             <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="social-icon">

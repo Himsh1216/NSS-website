@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Calendar, Users, Award, ArrowRight, Mail, Phone, MapPin } from "lucide-react";
+import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './HomePage.css';  // We'll create this next
 
@@ -312,10 +313,10 @@ const HomePage = () => {
               we work towards creating positive change in society while developing leadership 
               skills and civic consciousness in our volunteers.
             </p>
-            <button className="btn btn-primary btn-lg px-5 py-3 rounded-pill">
+            <Link to="/About" className="btn btn-primary btn-lg px-5 py-3 rounded-pill">
               Learn More 
               <ArrowRight className="ms-2" size={20} />
-            </button>
+            </Link>
           </div>
         </div>
       </section>
