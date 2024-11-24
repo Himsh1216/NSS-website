@@ -104,7 +104,7 @@ app.get('/test-sendgrid', async (req, res) => {
 });
 
 // Registration endpoint
-app.post('/send-registration', async (req, res) => {
+app.post('/api/send-registration', async (req, res) => {
     try {
         console.log('Received registration request');
         const { to, subject, content } = req.body;
