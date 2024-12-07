@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { useInView } from "react-intersection-observer";
 
 const About = () => {
   const navigate = useNavigate();
@@ -12,7 +13,6 @@ const About = () => {
       image: "/Initiatives_photos/Village_adoption_photo.jpeg",
       title: "Village Adoption and Development",
       description: "IIT Bhubaneswar has adopted villages under NSS and Unnat Bharat Abhiyan for healthcare, education, and sustainability.",
-      path: "/village_adoption",
       overlayClass: "bg-primary",
       icon: "🏘️",
     },
@@ -20,7 +20,6 @@ const About = () => {
       image: "/Initiatives_photos/Entreprenuership_photo.jpeg",
       title: "Entrepreneurship and Rural Development",
       description: "NSS supports rural development and entrepreneurship through conclaves and community engagement.",
-      path: "/entrepreneurship",
       overlayClass: "bg-info",
       icon: "💼",
     },
@@ -28,7 +27,6 @@ const About = () => {
       image: "/Initiatives_photos/Environmental_photo.jpeg",
       title: "Environmental Initiatives",
       description: "NSS volunteers conduct tree plantation drives, promoting ecological balance and sustainability.",
-      path: "/environmental_initiatives",
       overlayClass: "bg-success",
       icon: "🌱",
     },
@@ -36,7 +34,6 @@ const About = () => {
       image: "/Initiatives_photos/Health_photo.jpeg",
       title: "Health and Hygiene Awareness",
       description: "Health camps and hygiene awareness programs are regularly organized in collaboration with medical teams.",
-      path: "/health_awareness",
       overlayClass: "bg-warning",
       icon: "🏥",
     },
@@ -44,7 +41,6 @@ const About = () => {
       image: "/Initiatives_photos/Youth_empowerment.jpeg",
       title: "Youth Empowerment",
       description: "NSS empowers students in leadership roles, with activities like blood donation camps and cleanliness drives.",
-      path: "/youth_empowerment",
       overlayClass: "bg-danger",
       icon: "💪",
     },
@@ -68,6 +64,83 @@ const About = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Impact Numbers Data
+  const impactData = [
+    {
+      number: 10,
+      suffix: '+',
+      label: 'Villages Adopted',
+      color: 'primary',
+      duration: 1500
+    },
+    {
+      number: 1000,
+      suffix: '+',
+      label: 'Trees Planted',
+      color: 'success',
+      duration: 2000
+    },
+    {
+      number: 50,
+      suffix: '+',
+      label: 'Annual Events',
+      color: 'info',
+      duration: 1500
+    },
+    {
+      number: 5000,
+      suffix: '+',
+      label: 'Lives Impacted',
+      color: 'warning',
+      duration: 2500
+    }
+  ];
+
+  // Counter Component
+  const CountUpNumber = ({ endNumber, duration, suffix, color, label }) => {
+    const [count, setCount] = useState(0);
+    const countRef = useRef(null);
+    const [ref, inView] = useInView({
+      threshold: 0.3,
+      triggerOnce: true
+    });
+
+    useEffect(() => {
+      if (inView && !countRef.current) {
+        const start = Date.now();
+        const end = start + duration;
+
+        countRef.current = requestAnimationFrame(function animate() {
+          const now = Date.now();
+          const progress = Math.min((now - start) / duration, 1);
+          
+          setCount(Math.floor(progress * endNumber));
+
+          if (progress < 1) {
+            countRef.current = requestAnimationFrame(animate);
+          }
+        });
+
+        return () => {
+          if (countRef.current) {
+            cancelAnimationFrame(countRef.current);
+          }
+        };
+      }
+    }, [inView, endNumber, duration]);
+
+    return (
+      <div className="col-md-3" ref={ref}>
+        <div className={`impact-card p-4 ${inView ? 'animate-in' : ''}`}>
+          <h3 className={`display-4 fw-bold text-${color} mb-2`}>
+            {count}{suffix}
+          </h3>
+          <p className="text-muted mb-0">{label}</p>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className="about-page">
@@ -138,7 +211,7 @@ const About = () => {
                       <p className="mb-4">{initiative.description}</p>
                       <button
                         className="btn btn-outline-light rounded-pill px-4 mx-auto"
-                        onClick={() => navigate(initiative.path)}
+                        onClick={() => navigate('/blog')}
                       >
                         Learn More
                       </button>
@@ -152,33 +225,19 @@ const About = () => {
       </section>
 
       {/* Impact Numbers Section */}
-      <section className="py-5 bg-light">
+      <section className="impact-section py-5 bg-light">
         <div className="container">
           <div className="row text-center g-4">
-            <div className="col-md-3">
-              <div className="p-4">
-                <h3 className="display-4 fw-bold text-primary mb-2">10+</h3>
-                <p className="text-muted mb-0">Villages Adopted</p>
-              </div>
-            </div>
-            <div className="col-md-3">
-              <div className="p-4">
-                <h3 className="display-4 fw-bold text-success mb-2">1000+</h3>
-                <p className="text-muted mb-0">Trees Planted</p>
-              </div>
-            </div>
-            <div className="col-md-3">
-              <div className="p-4">
-                <h3 className="display-4 fw-bold text-info mb-2">50+</h3>
-                <p className="text-muted mb-0">Annual Events</p>
-              </div>
-            </div>
-            <div className="col-md-3">
-              <div className="p-4">
-                <h3 className="display-4 fw-bold text-warning mb-2">5000+</h3>
-                <p className="text-muted mb-0">Lives Impacted</p>
-              </div>
-            </div>
+            {impactData.map((item, index) => (
+              <CountUpNumber
+                key={index}
+                endNumber={item.number}
+                suffix={item.suffix}
+                label={item.label}
+                color={item.color}
+                duration={item.duration}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -211,6 +270,47 @@ const About = () => {
 
           .initiatives-section {
             overflow-x: hidden;
+          }
+
+          /* Impact Numbers Styles */
+          .impact-section {
+            overflow: hidden;
+          }
+
+          .impact-card {
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+          }
+
+          .impact-card.animate-in {
+            transform: translateY(0);
+            opacity: 1;
+          }
+
+          .impact-card:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+          }
+
+          /* Staggered animation for impact cards */
+          .impact-card:nth-child(1) { transition-delay: 0s; }
+          .impact-card:nth-child(2) { transition-delay: 0.1s; }
+          .impact-card:nth-child(3) { transition-delay: 0.2s; }
+          .impact-card:nth-child(4) { transition-delay: 0.3s; }
+
+          @media (max-width: 768px) {
+            .impact-card {
+              margin: 5px;
+            }
+            
+            .impact-card h3 {
+              font-size: 2.5rem;
+            }
           }
         `}
       </style>

@@ -7,6 +7,7 @@
 
 .navbar > .container-fluid {
   height: 100%;
+  justify-content: space-between; /* Updated */
 }
 
 /* Navbar states */
@@ -29,8 +30,28 @@
 .logo-container {
   display: flex;
   align-items: center;
-  height: 100%;
+  height: 50%;
   padding: 8px 0;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin-right: 0; /* Added */
+}
+
+.navbar-brand h1 {
+  color: #2c3e50;
+  margin-left: 15px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+.navbar-scrolled .navbar-brand h1 {
+  font-size: 1.1rem;
 }
 
 .navbar-logo {
@@ -52,6 +73,11 @@
 /* Navigation container */
 .navbar-nav {
   height: 100%;
+  position: absolute; /* Added */
+  left: 50%; /* Added */
+  transform: translateX(-50%); /* Added */
+  display: flex; /* Added */
+  align-items: center; /* Added */
 }
 
 /* Navigation items */
@@ -114,7 +140,8 @@
 .navbar-toggler {
   padding: 0;
   border: none;
-  margin-right: 15px;
+  margin-left: 15px;
+  order: 3;
 }
 
 .hamburger-lines {
@@ -188,37 +215,13 @@
   );
 }
 
-/* Mobile responsive styles */
+/* Update mobile styles */
 @media (max-width: 991.98px) {
-  .navbar {
-    height: 120px;
-  }
-
-  .navbar-scrolled {
-    height: 60px;
-  }
-
-  .navbar-logo {
-    height: 38px;
-  }
-
-  .navbar-scrolled .navbar-logo {
-    height: 32px;
-  }
-
-  .nav-item {
-    height: auto;
-    margin: 8px 0;
-  }
-
-  .nav-link {
-    font-size: 1rem;
-    padding: 0.5rem 1rem !important;
-  }
-
-  .nav-line {
-    height: 1px;
-    bottom: -2px;
+  .navbar-nav {
+    position: static; /* Reset position for mobile */
+    transform: none; /* Reset transform for mobile */
+    width: 100%; /* Full width on mobile */
+    justify-content: center; /* Center links on mobile */
   }
 
   .navbar-collapse {
@@ -239,5 +242,10 @@
 
   .navbar-collapse.show {
     max-height: 450px;
+  }
+
+  .nav-item {
+    justify-content: center; /* Center items on mobile */
+    width: 100%; /* Full width on mobile */
   }
 }

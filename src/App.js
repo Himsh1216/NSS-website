@@ -7,9 +7,7 @@ import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import TeamPage from './pages/TeamPage';
 import About from './pages/About';
-import VillageAdoption from './components/VillageAdoption'; 
-import Entrepreneurship from './components/Entrepreneurship';
-import EnvironmentalInitiatives from './components/EnvironmentalInitiatives';
+import NSSBlog from './pages/BlogPage';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
@@ -23,11 +21,8 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/team" element={<TeamPage />} />
         <Route path="/about" element={<About />} />
+        <Route path="/blog" element={<NSSBlog />} />
 
-        {/* Key Initiatives Pages */}
-        <Route path="/village_adoption" element={<VillageAdoption />} />
-        <Route path="/entrepreneurship" element={<Entrepreneurship />} />
-        <Route path="/environmental_initiatives" element={<EnvironmentalInitiatives />} />
         </Routes>
       <Footer />
       <Analytics />

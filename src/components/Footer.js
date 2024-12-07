@@ -28,7 +28,7 @@ const Footer = () => {
           <div className="col-md-4">
             <h5>Phone</h5>
             <p>
-              <a href="tel:+91-1234567890" className="text-white">+91 1234567890</a>
+              <a href="tel:+91-1234567890" className="text-white">+91 99589 23766</a>
             </p>
           </div>
 

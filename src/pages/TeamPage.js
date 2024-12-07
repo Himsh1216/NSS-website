@@ -6,12 +6,18 @@ import { UserCircle } from 'lucide-react';
 const TeamPage = () => {
   // Faculty Coordinator
   const coordinator = [
+    {
+      name: 'Prof. Rajesh Roshan Dash',
+      role: 'Dean Student Affairs',
+      image: '/Team_photos/Rajesh_Roshan_sir.jpeg',
+      description: 'Dr. Rajesh Roshan Dash brings a wealth of academic and professional expertise to the position of Dean of Student Affairs. With a distinguished educational background, Dr. Rajesh Roshan Dash completed a Ph.D. in Civil Engineering with a specialization in Environmental Engineering from the prestigious Indian Institute of Technology (IIT) Roorkee in 2008. Prior to this, Dr. Rajesh Roshan Dash earned a Master of Engineering (M.E.) in Environmental Engineering from Motilal Nehru National Institute of Technology (MNNIT), Allahabad, in 2001 and a Bachelor of Engineering (B.E.) in Civil Engineering from Utkal University, Bhubaneswar, in 1998. Dr. Rajesh Roshan Dash is committed to fostering a vibrant, inclusive, and supportive environment for students, combining academic excellence with opportunities for personal growth and development. With a strong foundation in environmental engineering and civil engineering, Dr. Rajesh Roshan Dash integrates technical expertise with a vision for holistic student engagement, ensuring a well-rounded and fulfilling campus experience.'
+    },
     { 
       name: 'Sivaiah Bathula Sir', 
       role: 'NSS Faculty Coordinator', 
       image: '/Team_photos/Sivaiah_Bathula_sir_photo.png',
       description: `Dr. Sivaiah Bathula is an Associate Professor at IIT Bhubaneswar, serving in the School of Minerals, Metallurgical and Materials Engineering. His research focuses on advanced materials and their applications in thermoelectrics, nanocomposites, and solid-state lighting. For more detailed information, visit his profile at IIT Bhubaneswar.`
-    }
+    },
   ];
 
   // Team Mentor
@@ -41,9 +47,9 @@ const TeamPage = () => {
     foodAndFinance: {
       title: "Food and Finance Team",
       members: [
-        { name: 'Abhishek Kumar Singh', role: 'Team Leader', image: '/Team_photos/NSS_cultural_team_photos/Abhishek_Singh_photo.jpeg' },
-        { name: 'Chansu', role: 'Team Executive', image: '/Team_photos/NSS_cultural_team_photos/Chansu_Parte_photo.jpeg' },
-        { name: 'Uttam Modi', role: 'Team Executive', image: '' }
+        { name: 'Chansu', role: 'Team Leader', image: '/Team_photos/NSS_cultural_team_photos/Chansu_Parte_photo.jpeg' },
+        { name: 'Abhishek Kumar Singh', role: 'Team Executive', image: '/Team_photos/NSS_cultural_team_photos/Abhishek_Singh_photo.jpeg' },
+        { name: 'Uttam Modi', role: 'Team Executive', image: '/Team_photos/NSS_cultural_team_photos/Uttam.jpeg' }
       ]
     },
     crowdManagement: {
@@ -59,7 +65,7 @@ const TeamPage = () => {
       title: "Anchoring Team",
       members: [
         { name: 'Vijeta Moond', role: 'Team Leader', image: '/Team_photos/NSS_cultural_team_photos/Vijeta_Moond_photo.jpeg' },
-        { name: 'Nikhilesh', role: 'Team Executive', image: '' },
+        { name: 'Nikhilesh', role: 'Team Executive', image: '/Team_photos/NSS_cultural_team_photos/Nikhilesh.jpeg' },
         { name: 'Rhutika', role: 'Team Executive', image: '/Team_photos/NSS_cultural_team_photos/Rhutika_Kshirsagar_photo.jpeg' }
       ]
     },
@@ -87,7 +93,6 @@ const TeamPage = () => {
         { name: 'Sake Yuvasari', role: 'Team Executive', image: '/Team_photos/NSS_tech_team_photos/Design_team/Suke_Yuvasari_photo.png' },
         { name: 'Pragnya', role: 'Team Executive', image: '/Team_photos/NSS_tech_team_photos/Design_team/Pragnya_photo.jpeg' },
         { name: 'Bhumika', role: 'Team Executive', image: '/Team_photos/NSS_tech_team_photos/Design_team/Bhumika_photo.jpeg' },
-        { name: 'Sai Chandana', role: 'Team Executive', image: '' },
         { name: 'Pawan Sai', role: 'Team Executive', image: '/Team_photos/NSS_tech_team_photos/Design_team/Pawan_Sai_photo.jpeg' }
       ]
     },
@@ -105,8 +110,6 @@ const TeamPage = () => {
         { name: 'Budhwant Somani', role: 'Team Leader', image: '/Team_photos/NSS_tech_team_photos/Drafting_team/Bhudwant_photo.jpeg' },
         { name: 'Pranjal Rout', role: 'Team Executive', image: '/Team_photos/NSS_tech_team_photos/Drafting_team/Pranjal_Rout_photo.jpeg' },
         { name: 'Hari Kumar Saha', role: 'Team Executive', image: '/Team_photos/NSS_tech_team_photos/Drafting_team/Hari_photo.jpg' },
-        { name: 'Pawan', role: 'Team Executive', image: '' },
-        { name: 'Hasini', role: 'Team Executive', image: '' }
       ]
     },
     blogging: {
@@ -122,8 +125,7 @@ const TeamPage = () => {
       title: "Website Management Team",
       members: [
         { name: 'Prakhar Soni', role: 'Team Leader', image: '/Team_photos/NSS_tech_team_photos/Website_management_team/Prakhar_Soni_photo.jpeg' },
-        { name: 'Aman Kumar Choudhary', role: 'Team Executive', image: '' },
-        { name: 'Jeewana', role: 'Team Executive', image: '' }
+        { name: 'Aman Kumar Choudhary', role: 'Team Executive', image: '/Team_photos/NSS_tech_team_photos/Website_management_team/Aman_Choudary.jpg' },
       ]
     }
   };
@@ -216,7 +218,7 @@ const TeamPage = () => {
         {/* Faculty Coordinator */}
         <section className="mb-5">
           <TeamSection 
-            title="NSS Faculty Coordinator" 
+            title="Faculty Coordinators" 
             members={coordinator} 
             className="coordinator-section"
           />
@@ -230,6 +232,27 @@ const TeamPage = () => {
             className="mentor-section"
           />
         </section>
+      {/* Technical Team */}
+      <section className="mb-5">
+          <h2 className="h3 mb-4 text-center">NSS Technical Team</h2>
+          
+        {/* Technical Team Coordinators */}
+        <TeamSection 
+          title="Technical Team Coordinators" 
+          members={techCoordinators} 
+          className="technical-coordinators"
+        />
+
+        {/* Technical Sub-teams */}
+        {Object.values(technicalTeams).map((team, index) => (
+          <TeamSection 
+            key={index}
+            title={team.title} 
+            members={team.members} 
+            className="technical-subteam"
+          />
+        ))}
+      </section>
 
         {/* Cultural Team */}
         <section className="mb-5">
@@ -252,30 +275,8 @@ const TeamPage = () => {
             />
           ))}
         </section>
-
-        {/* Technical Team */}
-        <section className="mb-5">
-          <h2 className="h3 mb-4 text-center">NSS Technical Team</h2>
-          
-          {/* Technical Team Coordinators */}
-          <TeamSection 
-            title="Technical Team Coordinators" 
-            members={techCoordinators} 
-            className="technical-coordinators"
-          />
-
-          {/* Technical Sub-teams */}
-          {Object.values(technicalTeams).map((team, index) => (
-            <TeamSection 
-              key={index}
-              title={team.title} 
-              members={team.members} 
-              className="technical-subteam"
-            />
-          ))}
-        </section>
       </div>
-
+      
       {/* CSS Styles */}
       <style>
         {`
