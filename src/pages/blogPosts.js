@@ -201,5 +201,159 @@ This historic ground, vital for community gatherings and festivities, was restor
         type: "Cleanliness",
         impact: "Community Space"
       }
+    },
+    
+    {
+      title: "Seven Days of Change: NSS Special Camp at Podapada Village",
+      date: "July 20th, 2024",
+      summary: "IIT Bhubaneswar organized its first-ever NSS Special Camp at an adopted village, Podapada, fostering development through seven impactful activities.",
+      content: `From July 14th to 20th, 2024, IIT Bhubaneswar's NSS unit conducted its first-ever special camp at Podapada village, marking a milestone in its commitment to rural development. Around 30 NSS volunteers participated wholeheartedly in this seven-day camp, engaging the village community through impactful activities in line with NSS guidelines.
+  
+  The camp focused on 'Seven Days, Seven Activities' that included environmental conservation drives, cleanliness campaigns, educational workshops for children, and health awareness programs. Each day brought a new opportunity to connect with the villagers and contribute to their well-being.
+  
+  The success of this initiative showcased IIT Bhubaneswar's mission to foster holistic development in its adopted villages while imparting valuable life lessons to student volunteers. Their hands-on involvement left a lasting impact on Podapada's residents, creating bonds of trust and shared growth.`,
+      image: "/past_events_photos/Podapada_special_camp.png",
+      imageAlt: "NSS Special Camp",
+      stats: {
+        participants: "30",
+        duration: "7 Days",
+        type: "Rural Development"
+      },
+      team: [
+        "NSS Coordinators",
+        "IIT Bhubaneswar NSS Volunteers"
+      ]
+    },
+    {
+      title: "Taking a Stand: Nashamukt Abhiyan Pledge at IIT Bhubaneswar",
+      date: "August 12th-15th, 2024",
+      summary: "NSS volunteers joined the nationwide Nasha Mukt Bharat Abhiyaan, pledging to work towards a drug-free society.",
+      content: `From August 12th to 15th, 2024, IIT Bhubaneswar's NSS unit actively participated in the Nasha Mukt Bharat Abhiyaan campaign. Students and staff took the pledge for a "Drug-Free India," emphasizing the importance of building a healthier and more aware society.
+  
+  The initiative included workshops, discussions on the impact of substance abuse, and community awareness programs. Volunteers engaged local villagers and students, creating a ripple effect of positive influence in the fight against drug abuse.
+  
+  This effort highlights IIT Bhubaneswar's commitment to nurturing responsible citizens and creating a supportive environment for growth and development.`,
+      image: "/events_photos/Nasha_mukti_abhiyan.png",
+      imageAlt: "Nasha Mukt Bharat Abhiyaan",
+      stats: {
+        participants: "Institute-Wide",
+        focus: "Drug-Free Society",
+        type: "Awareness Campaign"
+      },
+      team: [
+        "NSS Coordinators",
+        "Student Volunteers",
+        "Local Community Members"
+      ]
+    },
+    {
+      title: "Growing Green Together: Plantation Drives at GHR and LHL",
+      date: "July 6th & August 24th, 2024",
+      summary: "NSS volunteers organized plantation drives at GHR and LHL, promoting environmental awareness and sustainability.",
+      content: `In July and August 2024, IIT Bhubaneswar's NSS team conducted impactful plantation drives at GHR and LHL. Volunteers planted over 300 saplings, spreading the message of environmental conservation and sustainability.
+  
+  These events focused on educating participants and community members about the importance of afforestation, the role of trees in combating climate change, and fostering a greener environment. The drives were supported by enthusiastic students, faculty, and local villagers, creating a collective effort toward a sustainable future.
+  
+  The plantation drives align with IIT Bhubaneswar's commitment to environmental stewardship and resonate with national initiatives for a greener India.`,
+      image: "/events_photos/Plantation_Drive_conducted_on_6th_July2024_at_GHR.png",
+      imageAlt: "Plantation Drive",
+      stats: {
+        saplings: "300+",
+        type: "Environmental",
+        impact: "Green Awareness"
+      },
+      team: [
+        "NSS Coordinators",
+        "Student Volunteers",
+        "Local Community Members"
+      ]
+    },
+    {
+      title: "Empowering Minds: Educational Workshops for Village Students",
+      date: "July 2024",
+      summary: "Interactive educational workshops were organized by NSS volunteers to empower students in adopted villages.",
+      content: `As part of the NSS Special Camp in July 2024, IIT Bhubaneswar volunteers organized a series of educational workshops aimed at empowering students in adopted villages. These workshops covered essential subjects including basic mathematics, science experiments, and spoken English, encouraging interactive and hands-on learning.
+  
+  The workshops were conducted in village schools and focused on building confidence and curiosity among rural students. Volunteers also engaged the children with creative activities like drawing and storytelling, fostering a positive learning environment.
+  
+  By bridging the educational gap, the NSS team played a key role in nurturing young minds and empowering them with knowledge and skills for a brighter future. These workshops reflect IIT Bhubaneswar's mission to drive rural development through education and youth empowerment.`,
+      image: "/past_events_photos/Educational_workshops.png",
+      imageAlt: "Educational Workshops",
+      stats: {
+        participants: "50+",
+        focus: "Education",
+        type: "Youth Empowerment"
+      },
+      team: [
+        "NSS Coordinators",
+        "Student Volunteers",
+        "Local Teachers"
+      ]
+    },
+    {
+      title: "Literacy for All: International Literacy Day Celebration",
+      date: "September 8th, 2024",
+      summary: "IIT Bhubaneswar NSS unit celebrated International Literacy Day with a quiz program titled 'Awareness Arena.'",
+      content: `On September 8th, 2024, IIT Bhubaneswar's NSS volunteers celebrated International Literacy Day with enthusiasm. The highlight of the event was a quiz program titled "Awareness Arena," which witnessed the participation of over 100 students from local schools.
+  
+  The event focused on fostering a culture of literacy and learning among students. Volunteers also engaged children in storytelling sessions and interactive discussions, emphasizing the importance of education as a tool for empowerment.
+  
+  The celebration reflected IIT Bhubaneswar's commitment to promoting literacy and creating a brighter future for rural communities.`,
+      image: "/events_photos/International_literacy_day.png",
+      imageAlt: "International Literacy Day",
+      stats: {
+        participants: "100+",
+        type: "Education",
+        impact: "Promoting Literacy"
+      },
+      team: [
+        "NSS Coordinators",
+        "Student Volunteers",
+        "Local School Teachers"
+      ]
+    },
+    {
+      title: "Saving Lives: KIMS CPR Training Workshop",
+      date: "August 10th, 2024",
+      summary: "A hands-on CPR workshop conducted in collaboration with KIMS Hospital, equipping NSS volunteers with life-saving skills.",
+      content: `On August 10th, 2024, IIT Bhubaneswar's NSS unit partnered with KIMS Hospital to conduct a hands-on CPR (Cardiopulmonary Resuscitation) workshop. The event trained students and staff on basic life support techniques, equipping them with essential skills for emergency response.
+  
+  Medical professionals from KIMS Hospital led the workshop, providing practical training on CPR and discussing real-world scenarios. Participants practiced on mannequins and gained confidence in administering first aid during emergencies.
+  
+  This initiative demonstrated IIT Bhubaneswar's commitment to fostering a safer community through awareness and skill-building programs.`,
+      image: "/events_photos/CPR_workshop.png",
+      imageAlt: "KIMS CPR Workshop",
+      stats: {
+        participants: "50+",
+        type: "Healthcare",
+        focus: "Life-Saving Skills"
+      },
+      team: [
+        "KIMS Medical Professionals",
+        "NSS Coordinators",
+        "Student Volunteers"
+      ]
+    },
+    {
+      title: "Har Ghar Tiranga: Celebrating Unity and Patriotism",
+      date: "August 9th-15th, 2024",
+      summary: "NSS volunteers participated in the Har Ghar Tiranga campaign, celebrating Independence Day with pride and unity.",
+      content: `From August 9th to 15th, 2024, IIT Bhubaneswar's NSS unit actively participated in the Har Ghar Tiranga campaign as part of the Independence Day celebrations. Volunteers and community members proudly hoisted the tricolor at their homes and engaged in patriotic events.
+  
+  The campaign included cultural programs, flag hoisting ceremonies, and interactive sessions highlighting India's rich heritage and the importance of unity. NSS volunteers also organized awareness drives to encourage widespread participation in the campaign.
+  
+  This initiative celebrated the spirit of freedom and inspired a collective sense of pride and responsibility toward the nation.`,
+      image: "/events_photos/Har_Ghar_Tiranga.png",
+      imageAlt: "Har Ghar Tiranga",
+      stats: {
+        participants: "Institute-Wide",
+        type: "Patriotism",
+        impact: "Community Bonding"
+      },
+      team: [
+        "NSS Coordinators",
+        "Student Volunteers",
+        "Local Community Members"
+      ]
     }
   ];

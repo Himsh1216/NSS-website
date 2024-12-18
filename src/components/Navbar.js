@@ -5,8 +5,10 @@ import './Navbar.css';
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [logoSrc, setLogoSrc] = useState('/Navbar_photos/National-Service-Scheme-L.png');
   const location = useLocation();
 
+  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -15,9 +17,28 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close menu on route change
   useEffect(() => {
     setIsMenuOpen(false);
   }, [location]);
+
+  // Handle logo change based on screen size
+  useEffect(() => {
+    const updateLogo = () => {
+      if (window.innerWidth <= 768) { // Mobile breakpoint
+        setLogoSrc('/Navbar_photos/National-Service-Scheme-S.png');
+      } else {
+        setLogoSrc('/Navbar_photos/National-Service-Scheme-M.png');
+      }
+    };
+
+    // Set initial logo based on screen size
+    updateLogo();
+
+    // Listen for window resize events
+    window.addEventListener('resize', updateLogo);
+    return () => window.removeEventListener('resize', updateLogo);
+  }, []);
 
   return (
     <nav className={`navbar navbar-expand-lg fixed-top ${isScrolled ? 'navbar-scrolled' : 'navbar-transparent'}`}>
@@ -26,7 +47,7 @@ const Navbar = () => {
         <Link to="/" className="navbar-brand d-flex align-items-center">
           <div className="logo-container">
             <img
-              src="/Navbar_photos/National-Service-Scheme-L.png"
+              src={logoSrc}
               alt="NSS Logo"
               className="navbar-logo"
             />

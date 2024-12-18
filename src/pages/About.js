@@ -68,8 +68,7 @@ const About = () => {
   // Impact Numbers Data
   const impactData = [
     {
-      number: 10,
-      suffix: '+',
+      number: 5,
       label: 'Villages Adopted',
       color: 'primary',
       duration: 1500

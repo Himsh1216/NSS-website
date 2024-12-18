@@ -20,7 +20,7 @@ const Footer = () => {
           <div className="col-md-4">
             <h5>Email</h5>
             <p>
-              <a href="mailto:nss@iitbbs.ac.in" className="text-white">nss@iitbbs.ac.in</a>
+              <a href="mailto:coordinator.nss@iitbbs.ac.in" className="text-white">coordinator.nss@iitbbs.ac.in</a>
             </p>
           </div>
 
@@ -28,7 +28,7 @@ const Footer = () => {
           <div className="col-md-4">
             <h5>Phone</h5>
             <p>
-              <a href="tel:+91-1234567890" className="text-white">+91 99589 23766</a>
+              <a href="tel:0674-713-6945" className="text-white">0674-713-6945</a>
             </p>
           </div>
 

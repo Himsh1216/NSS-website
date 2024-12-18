@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import { Calendar, Eye, ArrowRight, MapPin, Clock, Search, Filter, X, Users, Target } from 'lucide-react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { blogPosts } from './blogPosts';
+
 const NSSBlog = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedYear, setSelectedYear] = useState('all');
   const [selectedPost, setSelectedPost] = useState(null);
 
-  
   const filteredPosts = blogPosts.filter(post => {
-  const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         post.content.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                           post.content.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesYear = selectedYear === 'all' || post.date.includes(selectedYear);
     return matchesSearch && matchesYear;
   });
@@ -45,7 +45,7 @@ const NSSBlog = () => {
               onChange={(e) => setSelectedYear(e.target.value)}
             >
               <option value="all">All Years</option>
-              {[2021, 2020, 2019].map(year => (
+              {[2024, 2021, 2020, 2019].map(year => (
                 <option key={year} value={year}>{year}</option>
               ))}
             </select>
