@@ -5,34 +5,41 @@ const Footer = () => {
   return (
     <footer className="footer bg-dark text-white py-5">
       <div className="container">
-        <div className="row">
-          {/* NSS Address Section */}
-          <div className="col-md-4">
-            <h5>Contact Us</h5>
-            <p>
-              <strong>Address:</strong><br />
-              NSS Office, Indian Institute of Technology Bhubaneswar,<br />
-              Arugul, Jatni, Khordha, Odisha - 752050, India
-            </p>
-          </div>
-
-          {/* Email Section */}
-          <div className="col-md-4">
-            <h5>Email</h5>
-            <p>
-              <a href="mailto:coordinator.nss@iitbbs.ac.in" className="text-white">coordinator.nss@iitbbs.ac.in</a>
-            </p>
-          </div>
-
-          {/* Phone Number Section */}
-          <div className="col-md-4">
-            <h5>Phone</h5>
-            <p>
-              <a href="tel:0674-713-6945" className="text-white">0674-713-6945</a>
-            </p>
-          </div>
-
+      <div className="row">
+        {/* NSS Address Section */}
+        <div className="col-md-3">
+          <h5>Contact Us</h5>
+          <p>
+            <strong>Address:</strong><br />
+            NSS Office, Indian Institute of Technology Bhubaneswar,<br />
+            Arugul, Jatni, Khordha, Odisha - 752050, India
+          </p>
         </div>
+
+        {/* Email Section */}
+        <div className="col-md-3">
+          <h5>Email</h5>
+          <p>
+            <a href="mailto:coordinator.nss@iitbbs.ac.in" className="text-white">coordinator.nss@iitbbs.ac.in</a>
+          </p>
+        </div>
+
+        {/* NSS History Section */}
+        <div className="col-md-3">
+          <h5>NSS History</h5>
+          <p>
+            <a href="https://nss.gov.in/about-us-0" target="_blank" rel="noopener noreferrer" className="text-white">View NSS History</a>
+          </p>
+        </div>
+
+        {/* Phone Number Section */}
+        <div className="col-md-3">
+          <h5>Phone</h5>
+          <p>
+            <a href="tel:0674-713-6945" className="text-white">0674-713-6945</a>
+          </p>
+        </div>
+      </div>
 
         {/* Social Media Icons Section */}
         <div className="row justify-content-center pt-4">

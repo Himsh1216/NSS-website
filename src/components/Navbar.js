@@ -28,7 +28,7 @@ const Navbar = () => {
       if (window.innerWidth <= 768) { // Mobile breakpoint
         setLogoSrc('/Navbar_photos/National-Service-Scheme-S.png');
       } else {
-        setLogoSrc('/Navbar_photos/National-Service-Scheme-M.png');
+        setLogoSrc('/Navbar_photos/National-Service-Scheme-S.png');
       }
     };
 

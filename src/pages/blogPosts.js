@@ -212,7 +212,7 @@ This historic ground, vital for community gatherings and festivities, was restor
   The camp focused on 'Seven Days, Seven Activities' that included environmental conservation drives, cleanliness campaigns, educational workshops for children, and health awareness programs. Each day brought a new opportunity to connect with the villagers and contribute to their well-being.
   
   The success of this initiative showcased IIT Bhubaneswar's mission to foster holistic development in its adopted villages while imparting valuable life lessons to student volunteers. Their hands-on involvement left a lasting impact on Podapada's residents, creating bonds of trust and shared growth.`,
-      image: "/past_events_photos/Podapada_special_camp.png",
+      image: "/past_events_photos/NSS_workshop_photo.png",
       imageAlt: "NSS Special Camp",
       stats: {
         participants: "30",
@@ -268,28 +268,28 @@ This historic ground, vital for community gatherings and festivities, was restor
         "Local Community Members"
       ]
     },
-    {
-      title: "Empowering Minds: Educational Workshops for Village Students",
-      date: "July 2024",
-      summary: "Interactive educational workshops were organized by NSS volunteers to empower students in adopted villages.",
-      content: `As part of the NSS Special Camp in July 2024, IIT Bhubaneswar volunteers organized a series of educational workshops aimed at empowering students in adopted villages. These workshops covered essential subjects including basic mathematics, science experiments, and spoken English, encouraging interactive and hands-on learning.
+  //   {
+  //     title: "Empowering Minds: Educational Workshops for Village Students",
+  //     date: "July 2024",
+  //     summary: "Interactive educational workshops were organized by NSS volunteers to empower students in adopted villages.",
+  //     content: `As part of the NSS Special Camp in July 2024, IIT Bhubaneswar volunteers organized a series of educational workshops aimed at empowering students in adopted villages. These workshops covered essential subjects including basic mathematics, science experiments, and spoken English, encouraging interactive and hands-on learning.
   
-  The workshops were conducted in village schools and focused on building confidence and curiosity among rural students. Volunteers also engaged the children with creative activities like drawing and storytelling, fostering a positive learning environment.
+  // The workshops were conducted in village schools and focused on building confidence and curiosity among rural students. Volunteers also engaged the children with creative activities like drawing and storytelling, fostering a positive learning environment.
   
-  By bridging the educational gap, the NSS team played a key role in nurturing young minds and empowering them with knowledge and skills for a brighter future. These workshops reflect IIT Bhubaneswar's mission to drive rural development through education and youth empowerment.`,
-      image: "/past_events_photos/Educational_workshops.png",
-      imageAlt: "Educational Workshops",
-      stats: {
-        participants: "50+",
-        focus: "Education",
-        type: "Youth Empowerment"
-      },
-      team: [
-        "NSS Coordinators",
-        "Student Volunteers",
-        "Local Teachers"
-      ]
-    },
+  // By bridging the educational gap, the NSS team played a key role in nurturing young minds and empowering them with knowledge and skills for a brighter future. These workshops reflect IIT Bhubaneswar's mission to drive rural development through education and youth empowerment.`,
+  //     image: "/past_events_photos/Educational_workshops.png",
+  //     imageAlt: "Educational Workshops",
+  //     stats: {
+  //       participants: "50+",
+  //       focus: "Education",
+  //       type: "Youth Empowerment"
+  //     },
+  //     team: [
+  //       "NSS Coordinators",
+  //       "Student Volunteers",
+  //       "Local Teachers"
+  //     ]
+  //   },
     {
       title: "Literacy for All: International Literacy Day Celebration",
       date: "September 8th, 2024",
