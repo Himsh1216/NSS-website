@@ -355,5 +355,38 @@ This historic ground, vital for community gatherings and festivities, was restor
         "Student Volunteers",
         "Local Community Members"
       ]
-    }
-  ];
+    },
+  
+
+    {
+      title: "Spreading Warmth and Joy: NSS Clothing Donation Drive at IIT Bhubaneswar",
+      date: "January 11th, 2025",
+      summary: "The NSS Cell and UBA at IIT Bhubaneswar organized a successful clothing donation drive to support migrant workers on campus during Makar Sankranti.",
+      content: `In a heartfelt effort to support the underprivileged, the NSS Cell of IIT Bhubaneswar, in collaboration with the Unnat Bharat Abhiyan (UBA) wing, successfully organized a clothing donation drive on January 11th. This thoughtful initiative aimed to collect and distribute clothes to the migrant workers on campus, spreading warmth and happiness ahead of the Makar Sankranti celebrations.
+    
+      The donation drive saw enthusiastic participation from both students and faculty members, who generously contributed gently used clothes. Collection points were strategically set up across various hostels and faculty quarters, making it convenient for the campus community to participate. The overwhelming response reflected IIT Bhubaneswar's strong sense of social responsibility and unity.
+    
+      After careful sorting, the collected clothes were distributed among the migrant workers on campus. Although children's clothing was limited, the recipients warmly embraced the gesture. Receiving new clothes ahead of the festive season added joy and excitement to their celebrations, bringing smiles to many faces.
+    
+      This initiative exemplifies the NSS Cell and UBA's commitment to fostering compassion and inclusivity within the IIT Bhubaneswar community. It highlighted how small acts of kindness can create a meaningful impact and strengthen the bond between the institution and its supporting community.
+    
+      The NSS Cell and UBA extend their sincere gratitude to all the donors whose generosity made this drive a success. They look forward to organizing more such initiatives in the future, continuing their mission to uplift and support society's underprivileged sections.
+    
+      Together, let's keep spreading warmth and kindness!`,
+      image: "/events_photos/NSS_donation_drive.png",
+      imageAlt: "Clothing Donation Drive at IIT Bhubaneswar",
+      stats: {
+        participants: "Numerous students and faculty members",
+        impact: "Positive impact on migrant workers' festive celebrations",
+        type: "Community Service"
+      },
+      team: [
+        "NSS Cell IIT Bhubaneswar",
+        "UBA IIT Bhubaneswar"
+      ]
+  }
+];
+  
+  
+  
+  

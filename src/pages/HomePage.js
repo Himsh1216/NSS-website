@@ -83,13 +83,24 @@ const HomePage = () => {
       fullDescription: 'Full details of the Har Ghar Tiranga Campaign go here.',
     },
     {
-      date: '12 - 15 August 2024',
-      title: 'Nasha Mukt Bharat Abhiyaan',
-      description: 'IIT Bhubaneswar joined the nationwide Nasha Mukt Bharat Abhiyaan, administering a pledge for a "Drug-Free India" with the active participation of students and staff.',
-      image: process.env.PUBLIC_URL + '/events_photos/Nasha_mukti_abhiyan.png',
+      date: 'January 11th, 2025',
+      title: 'Spreading Warmth and Joy: NSS Clothing Donation Drive at IIT Bhubaneswar',
+      description: 'The NSS Cell and UBA at IIT Bhubaneswar organized a successful clothing donation drive to support migrant workers on campus during Makar Sankranti.',
+      image: process.env.PUBLIC_URL + '/events_photos/NSS_donation_drive.png',
       overlayClass: 'overlay-green-dark',
-      fullDescription: 'Full details of the Har Ghar Tiranga Campaign go here.',
-    },
+      fullDescription: `In a heartfelt effort to support the underprivileged, the NSS Cell of IIT Bhubaneswar, in collaboration with the Unnat Bharat Abhiyan (UBA) wing, successfully organized a clothing donation drive on January 11th. This thoughtful initiative aimed to collect and distribute clothes to the migrant workers on campus, spreading warmth and happiness ahead of the Makar Sankranti celebrations.
+    
+    The donation drive saw enthusiastic participation from both students and faculty members, who generously contributed gently used clothes. Collection points were strategically set up across various hostels and faculty quarters, making it convenient for the campus community to participate. The overwhelming response reflected IIT Bhubaneswar's strong sense of social responsibility and unity.
+    
+    After careful sorting, the collected clothes were distributed among the migrant workers on campus. Although children's clothing was limited, the recipients warmly embraced the gesture. Receiving new clothes ahead of the festive season added joy and excitement to their celebrations, bringing smiles to many faces.
+    
+    This initiative exemplifies the NSS Cell and UBA's commitment to fostering compassion and inclusivity within the IIT Bhubaneswar community. It highlighted how small acts of kindness can create a meaningful impact and strengthen the bond between the institution and its supporting community.
+    
+    The NSS Cell and UBA extend their sincere gratitude to all the donors whose generosity made this drive a success. They look forward to organizing more such initiatives in the future, continuing their mission to uplift and support society's underprivileged sections.
+    
+    Together, let's keep spreading warmth and kindness!`
+    }
+    
 
   ];
 
