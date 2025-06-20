@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 require('dotenv').config();
 const express = require('express');
 const sgMail = require('@sendgrid/mail');
@@ -7,6 +8,19 @@ const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const blogPostsPath = path.join(__dirname, 'blogPosts.json');
+
+const readBlogPosts = () => {
+    try {
+        return JSON.parse(fs.readFileSync(blogPostsPath, 'utf8'));
+    } catch (err) {
+        return [];
+    }
+};
+
+const writeBlogPosts = (posts) => {
+    fs.writeFileSync(blogPostsPath, JSON.stringify(posts, null, 2));
+};
 
 // Initialize SendGrid
 try {
@@ -178,6 +192,18 @@ app.post('/api/send-registration', async (req, res) => {
             }
         });
     }
+});
+
+// Blog posts endpoints
+app.get('/api/blog-posts', (req, res) => {
+    res.json(readBlogPosts());
+});
+
+app.post('/api/blog-posts', (req, res) => {
+    const posts = readBlogPosts();
+    posts.unshift(req.body);
+    writeBlogPosts(posts);
+    res.status(201).json({ success: true });
 });
 
 // Catch-all route for React app
