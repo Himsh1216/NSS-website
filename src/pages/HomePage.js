@@ -43,66 +43,14 @@ const HomePage = () => {
     },
   ];
 
-  const eventReports = [
-    {
-      date: "08 September 2024",
-      title: "International Literacy Day",
-      description: 'The NSS Wing of IIT Bhubaneswar celebrated International Literacy Day by organizing a quiz program titled "Awareness Arena" with over 100 students participating.',
-      image: "/events_photos/International_literacy_day.png",
-      overlayClass: "bg-primary",
-    },
-    {
-      date: "09 - 15 August 2024",
-      title: "Har Ghar Tiranga Campaign",
-      description: 'As part of the Independence Day celebrations, the members of the Institute participated in the "Har Ghar Tiranga" campaign to showcase patriotism.',
-      image: "/events_photos/Har_Ghar_Tiranga.png",
-      overlayClass: "bg-info",
-    },
-    {
-      date: '10 August 2024',
-      title: 'CPR Workshop',
-      description: 'A workshop on Cardiopulmonary Resuscitation (CPR) was organized by IIT Bhubaneswar and KIMS Hospital to train students and staff on basic life support techniques.',
-      image: process.env.PUBLIC_URL + '/events_photos/CPR_workshop.png',
-      overlayClass: 'overlay-green',
-      fullDescription: 'Full details of the Har Ghar Tiranga Campaign go here.',
-    },
-    {
-      date: '06 July 2024',
-      title: 'Plantation Drive at GHR',
-      description: 'The NSS team organized a plantation drive at GHR, focusing on promoting environmental awareness through tree planting activities.',
-      image: process.env.PUBLIC_URL + '/events_photos/Plantation_Drive_conducted_on_6th_July2024_at_GHR.png',
-      overlayClass: 'overlay-orange',
-      fullDescription: 'Full details of the Har Ghar Tiranga Campaign go here.',
-    },
-    {
-      date: '24 August 2024',
-      title: 'Plantation Drive at LHL',
-      description: 'A plantation drive was conducted at LHL, part of NSS activities promoting a greener environment in the campus area.',
-      image: process.env.PUBLIC_URL + '/events_photos/Plantation_Drive_conducted_on_24th_August2024_at_LHL.png',
-      overlayClass: 'overlay-blue-dark',
-      fullDescription: 'Full details of the Har Ghar Tiranga Campaign go here.',
-    },
-    {
-      date: 'January 11th, 2025',
-      title: 'Spreading Warmth and Joy: NSS Clothing Donation Drive at IIT Bhubaneswar',
-      description: 'The NSS Cell and UBA at IIT Bhubaneswar organized a successful clothing donation drive to support migrant workers on campus during Makar Sankranti.',
-      image: process.env.PUBLIC_URL + '/events_photos/NSS_donation_drive.png',
-      overlayClass: 'overlay-green-dark',
-      fullDescription: `In a heartfelt effort to support the underprivileged, the NSS Cell of IIT Bhubaneswar, in collaboration with the Unnat Bharat Abhiyan (UBA) wing, successfully organized a clothing donation drive on January 11th. This thoughtful initiative aimed to collect and distribute clothes to the migrant workers on campus, spreading warmth and happiness ahead of the Makar Sankranti celebrations.
-    
-    The donation drive saw enthusiastic participation from both students and faculty members, who generously contributed gently used clothes. Collection points were strategically set up across various hostels and faculty quarters, making it convenient for the campus community to participate. The overwhelming response reflected IIT Bhubaneswar's strong sense of social responsibility and unity.
-    
-    After careful sorting, the collected clothes were distributed among the migrant workers on campus. Although children's clothing was limited, the recipients warmly embraced the gesture. Receiving new clothes ahead of the festive season added joy and excitement to their celebrations, bringing smiles to many faces.
-    
-    This initiative exemplifies the NSS Cell and UBA's commitment to fostering compassion and inclusivity within the IIT Bhubaneswar community. It highlighted how small acts of kindness can create a meaningful impact and strengthen the bond between the institution and its supporting community.
-    
-    The NSS Cell and UBA extend their sincere gratitude to all the donors whose generosity made this drive a success. They look forward to organizing more such initiatives in the future, continuing their mission to uplift and support society's underprivileged sections.
-    
-    Together, let's keep spreading warmth and kindness!`
-    }
-    
+  const [eventReports, setEventReports] = useState([]);
 
-  ];
+  useEffect(() => {
+    fetch('/api/blog-posts')
+      .then(res => res.json())
+      .then(data => setEventReports(data.slice(0, 6)))
+      .catch(() => setEventReports([]));
+  }, []);
 
   const volunteerActivities = [
     "Teaching and Education",
@@ -339,7 +287,7 @@ const HomePage = () => {
           <div className="row g-4">
             {eventReports.map((event, index) => (
               <div className="col-md-4" key={index}>
-                <div 
+                <div
                   className="card h-100 border-0 overflow-hidden cursor-pointer"
                   onClick={() => setSelectedEvent(event)}
                   style={{ cursor: 'pointer' }}
@@ -351,12 +299,12 @@ const HomePage = () => {
                       className="card-img"
                       style={{ height: '300px', objectFit: 'cover' }}
                     />
-                    <div className={`card-img-overlay d-flex flex-column justify-content-end ${event.overlayClass}`} 
+                    <div className={`card-img-overlay d-flex flex-column justify-content-end ${event.overlayClass || 'bg-dark'}`}
                          style={{ opacity: 0.9 }}>
                       <div className="text-white">
                         <small className="d-inline-block mb-2">{event.date}</small>
                         <h3 className="h4 fw-bold">{event.title}</h3>
-                        <p className="small">{event.description}</p>
+                        <p className="small">{event.summary}</p>
                       </div>
                     </div>
                   </div>
@@ -571,11 +519,11 @@ const HomePage = () => {
                     <Calendar size={20} className="me-2" />
                     <span>{selectedEvent.date}</span>
                   </div>
-                  <p className="text-muted">{selectedEvent.description}</p>
+                  <p className="text-muted">{selectedEvent.summary}</p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
         </div>
       )}
     </div>
