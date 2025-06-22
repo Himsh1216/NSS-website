@@ -200,10 +200,22 @@ app.get('/api/blog-posts', (req, res) => {
 });
 
 app.post('/api/blog-posts', (req, res) => {
+    if (req.headers['x-admin-password'] !== process.env.ADMIN_PASSWORD) {
+        return res.status(401).json({ success: false, message: 'Unauthorized' });
+    }
+
     const posts = readBlogPosts();
     posts.unshift(req.body);
     writeBlogPosts(posts);
     res.status(201).json({ success: true });
+});
+
+app.post('/api/admin/verify', (req, res) => {
+    if (req.headers['x-admin-password'] === process.env.ADMIN_PASSWORD) {
+        res.json({ success: true });
+    } else {
+        res.status(401).json({ success: false });
+    }
 });
 
 // Catch-all route for React app
