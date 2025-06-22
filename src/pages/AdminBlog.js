@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { GoogleLogin } from '@react-oauth/google';
 
 const AdminBlog = () => {
   const [form, setForm] = useState({
@@ -10,30 +11,32 @@ const AdminBlog = () => {
     imageAlt: ''
   });
 
-  const [password, setPassword] = useState('');
+  const [token, setToken] = useState('');
   const [authed, setAuthed] = useState(false);
   const [error, setError] = useState('');
 
   useEffect(() => {
-    const stored = localStorage.getItem('adminPw');
+    const stored = localStorage.getItem('adminToken');
     if (stored) {
-      verifyPassword(stored);
+      verifyToken(stored);
     }
   }, []);
 
-  const verifyPassword = (pw) => {
+  const verifyToken = (tok) => {
     fetch('/api/admin/verify', {
       method: 'POST',
-      headers: { 'x-admin-password': pw }
+      headers: { 'Authorization': 'Bearer ' + tok }
     }).then(res => {
       if (res.ok) {
         setAuthed(true);
-        localStorage.setItem('adminPw', pw);
+        setToken(tok);
+        localStorage.setItem('adminToken', tok);
         setError('');
       } else {
-        setError('Incorrect password');
+        setError('Unauthorized');
         setAuthed(false);
-        localStorage.removeItem('adminPw');
+        setToken('');
+        localStorage.removeItem('adminToken');
       }
     }).catch(() => {
       setError('Network error');
@@ -44,17 +47,16 @@ const AdminBlog = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    verifyPassword(password);
+  const handleLoginSuccess = (credentialResponse) => {
+    verifyToken(credentialResponse.credential);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const pw = localStorage.getItem('adminPw') || '';
+    const tok = localStorage.getItem('adminToken') || token;
     fetch('/api/blog-posts', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'x-admin-password': pw },
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + tok },
       body: JSON.stringify(form)
     }).then(res => {
       if (res.ok) {
@@ -70,13 +72,10 @@ const AdminBlog = () => {
     return (
       <div className="container py-5">
         <h1 className="mb-4">Admin Login</h1>
-        <form onSubmit={handleLogin} className="mb-5" style={{maxWidth: '400px'}}>
-          <div className="mb-3">
-            <input type="password" value={password} onChange={e => setPassword(e.target.value)} className="form-control" placeholder="Password" required />
-          </div>
-          {error && <div className="text-danger mb-3">{error}</div>}
-          <button type="submit" className="btn btn-primary">Login</button>
-        </form>
+        <div style={{ maxWidth: '400px' }}>
+          <GoogleLogin onSuccess={handleLoginSuccess} onError={() => setError('Login Failed')} />
+          {error && <div className="text-danger mt-3">{error}</div>}
+        </div>
       </div>
     );
   }
