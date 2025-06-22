@@ -1,14 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Calendar, Eye, ArrowRight, MapPin, Clock, Search, Filter, X, Users, Target } from 'lucide-react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { blogPosts } from './blogPosts';
 
 const NSSBlog = () => {
+  const [posts, setPosts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedYear, setSelectedYear] = useState('all');
   const [selectedPost, setSelectedPost] = useState(null);
 
-  const filteredPosts = blogPosts.filter(post => {
+  useEffect(() => {
+    fetch('/api/blog-posts')
+      .then(res => res.json())
+      .then(data => setPosts(data))
+      .catch(() => setPosts([]));
+  }, []);
+
+  const filteredPosts = posts.filter(post => {
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            post.content.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesYear = selectedYear === 'all' || post.date.includes(selectedYear);

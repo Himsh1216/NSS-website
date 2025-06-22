@@ -1,12 +1,28 @@
 const path = require('path');
+const fs = require('fs');
 require('dotenv').config();
 const express = require('express');
 const sgMail = require('@sendgrid/mail');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const { OAuth2Client } = require('google-auth-library');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const blogPostsPath = path.join(__dirname, 'blogPosts.json');
+const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+
+const readBlogPosts = () => {
+    try {
+        return JSON.parse(fs.readFileSync(blogPostsPath, 'utf8'));
+    } catch (err) {
+        return [];
+    }
+};
+
+const writeBlogPosts = (posts) => {
+    fs.writeFileSync(blogPostsPath, JSON.stringify(posts, null, 2));
+};
 
 // Initialize SendGrid
 try {
@@ -177,6 +193,52 @@ app.post('/api/send-registration', async (req, res) => {
                 details: process.env.NODE_ENV === 'development' ? error.response?.body : undefined
             }
         });
+    }
+});
+
+// Blog posts endpoints
+app.get('/api/blog-posts', (req, res) => {
+    res.json(readBlogPosts());
+});
+
+app.post('/api/blog-posts', async (req, res) => {
+    const auth = req.headers['authorization'] || '';
+    const token = auth.startsWith('Bearer ') ? auth.slice(7) : null;
+    if (!token) {
+        return res.status(401).json({ success: false, message: 'Unauthorized' });
+    }
+
+    try {
+        const ticket = await googleClient.verifyIdToken({ idToken: token, audience: process.env.GOOGLE_CLIENT_ID });
+        const payload = ticket.getPayload();
+        if (payload.email !== 'coordinator.nss@iitbbs.ac.in') {
+            return res.status(403).json({ success: false, message: 'Forbidden' });
+        }
+    } catch (err) {
+        return res.status(401).json({ success: false, message: 'Invalid token' });
+    }
+
+    const posts = readBlogPosts();
+    posts.unshift(req.body);
+    writeBlogPosts(posts);
+    res.status(201).json({ success: true });
+});
+
+app.post('/api/admin/verify', async (req, res) => {
+    const auth = req.headers['authorization'] || '';
+    const token = auth.startsWith('Bearer ') ? auth.slice(7) : null;
+    if (!token) {
+        return res.status(401).json({ success: false });
+    }
+    try {
+        const ticket = await googleClient.verifyIdToken({ idToken: token, audience: process.env.GOOGLE_CLIENT_ID });
+        const payload = ticket.getPayload();
+        if (payload.email === 'coordinator.nss@iitbbs.ac.in') {
+            return res.json({ success: true });
+        }
+        return res.status(403).json({ success: false });
+    } catch (err) {
+        return res.status(401).json({ success: false });
     }
 });
 
