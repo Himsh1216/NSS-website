@@ -81,6 +81,34 @@
   animation: fadeInUp 1s ease-out 0.6s both;
 }
 
+.about-hero-highlights {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: min(90%, 720px);
+  z-index: 2;
+}
+
+.about-hero-badge {
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #fff;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 12px 30px rgba(13, 110, 253, 0.25);
+  animation: float 6s ease-in-out infinite;
+}
+
 .scroll-indicator {
   position: absolute;
   bottom: 30px;
@@ -97,6 +125,57 @@
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   position: relative;
   overflow: hidden;
+}
+
+.impact-stats-backdrop {
+  position: absolute;
+  inset: -60px 0 -40px 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.impact-backdrop-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.6;
+}
+
+.impact-backdrop-glow.glow-one {
+  top: -10%;
+  left: 12%;
+  width: 360px;
+  height: 360px;
+  background: rgba(13, 110, 253, 0.45);
+  animation: impactDrift 16s ease-in-out infinite;
+}
+
+.impact-backdrop-glow.glow-two {
+  bottom: -15%;
+  right: 8%;
+  width: 420px;
+  height: 420px;
+  background: rgba(102, 16, 242, 0.45);
+  animation: impactDrift 20s ease-in-out infinite reverse;
+}
+
+.impact-backdrop-ring {
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  width: 68%;
+  height: 68%;
+  transform: translateX(-50%);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 50%;
+  opacity: 0.4;
+  animation: impactPulse 14s ease-in-out infinite;
+}
+
+.impact-stats-section .container {
+  position: relative;
+  z-index: 2;
 }
 
 .impact-stats-section::before {
@@ -143,6 +222,11 @@
   position: relative;
   overflow: hidden;
   margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  isolation: isolate;
 }
 
 .impact-card::before {
@@ -165,6 +249,19 @@
   height: 8px;
 }
 
+.impact-card-backdrop {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, var(--card-color-rgba, rgba(13, 110, 253, 0.25)), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 1;
+}
+
+.impact-card:hover .impact-card-backdrop {
+  opacity: 1;
+}
+
 .impact-number {
   font-size: 4rem;
   font-weight: 800;
@@ -185,21 +282,55 @@
   text-transform: uppercase;
 }
 
+.impact-icon {
+  font-size: 2rem;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.2));
+  box-shadow: 0 12px 30px rgba(13, 110, 253, 0.15);
+  position: relative;
+  z-index: 2;
+}
+
+.impact-description {
+  margin: 0;
+  font-size: 1rem;
+  color: #495057;
+  max-width: 260px;
+  line-height: 1.6;
+  position: relative;
+  z-index: 2;
+}
+
+.impact-card .impact-number,
+.impact-card .impact-label {
+  position: relative;
+  z-index: 2;
+}
+
 /* Color Variables for Impact Cards */
 .impact-card.primary {
   --card-color: #0d6efd;
+  --card-color-rgba: rgba(13, 110, 253, 0.25);
 }
 
 .impact-card.success {
   --card-color: #198754;
+  --card-color-rgba: rgba(25, 135, 84, 0.25);
 }
 
 .impact-card.info {
   --card-color: #0dcaf0;
+  --card-color-rgba: rgba(13, 202, 240, 0.25);
 }
 
 .impact-card.warning {
   --card-color: #ffc107;
+  --card-color-rgba: rgba(255, 193, 7, 0.28);
 }
 
 /* Enhanced Initiatives Section */
@@ -363,6 +494,15 @@
     font-size: 3.5rem;
   }
 
+  .about-hero-highlights {
+    bottom: 70px;
+  }
+
+  .about-hero-badge {
+    font-size: 0.8rem;
+    padding: 0.45rem 1.1rem;
+  }
+
   .impact-stats-title,
   .initiatives-title {
     font-size: 2.5rem;
@@ -380,6 +520,16 @@
 
   .about-hero-description {
     font-size: 1.1rem;
+  }
+
+  .about-hero-highlights {
+    bottom: 60px;
+    width: min(95%, 520px);
+    gap: 0.85rem;
+  }
+
+  .about-hero-badge {
+    font-size: 0.78rem;
   }
 
   .impact-card {
@@ -415,6 +565,16 @@
 
   .about-hero-description {
     font-size: 1rem;
+  }
+
+  .about-hero-highlights {
+    bottom: 55px;
+    gap: 0.65rem;
+  }
+
+  .about-hero-badge {
+    font-size: 0.72rem;
+    padding: 0.4rem 0.9rem;
   }
 
   .impact-stats-section,
@@ -461,6 +621,18 @@
     font-size: 1.1rem;
   }
 
+  .about-hero-highlights {
+    bottom: 45px;
+    width: calc(100% - 2rem);
+    padding: 0 0.5rem;
+    gap: 0.6rem;
+  }
+
+  .about-hero-badge {
+    flex: 1 1 48%;
+    text-align: center;
+  }
+
   .impact-stats-title,
   .initiatives-title,
   .mission-vision-title {
@@ -502,6 +674,33 @@
   }
   60% {
     transform: translateY(-5px) translateX(-50%);
+  }
+}
+
+@keyframes impactDrift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(40px, -20px, 0) scale(1.05);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes impactPulse {
+  0% {
+    transform: translateX(-50%) scale(0.95);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateX(-50%) scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(-50%) scale(0.95);
+    opacity: 0.35;
   }
 }
 
