@@ -5,49 +5,23 @@
 
 module.exports = [
   {
-    "title": "Plantation drive under ?Ek ped maa ke Naam 2.0? initiative",
+    "title": "Plantation drive under Ek ped maa ke Naam 2.0 initiative",
     "date": "2025-09-17",
     "summary": "Smooth organisation, Large participation and good spirit of teamwork.",
     "content": "At 7:30 AM in the morning with sunshine, the Student Activity Centre of IIT Bhubaneswar was filled with enthusiastic young people as the NSS Bureau of IIT Bhubaneswar conducted the plantation drive \"Ek Ped Maa Ke Naam 2.0\". This initiative by the Higher Education Department, Government of Odisha was with the aim to enhance environmental awareness and tree plantation for a sustainable future.\n\nNSS volunteers came in large groups and infused energy and enthusiasm to the program. They served a very important purpose ? not just that they planted a huge number of saplings on the campus but even nurtured every plant, representing the care we must extend to our planet.\n\nThough we are well aware of the role of trees in keeping the environment balanced, this campaign reminded us that action speaks louder than words. Each sapling planted was one small but important step to cut down pollution, enhance campus life and raise awareness.\n\n\"Ek Ped Maa Ke Naam 2.0\" succeeded due to the commitment of the volunteers who coordinated their efforts with passion and regimentation. They set the event in motion and made a good impression on the campus.\n\nIt is not an one-off event but a part of a larger drive towards a greener tomorrow. Let's carry the momentum forward and make a contribution towards a sustainable future, tree by tree!\n\n\n?Not ME but YOU? \n\nTEAM NSS, IIT Bhubaneswar.",
-    "image": "/api/placeholder/400/300",
-    "imageAlt": "Image geos here",
+    "image": "/past_events_photos/plantation_drive_25.png",
+    "imageAlt": "Ek Ped Maa Ke Naam 2.0",
     "stats": {
       "type": "Environmental",
       "participants": 0,
       "location": "IIT Bhubaneswar",
-      "duration": "Full Day"
+      "duration": "2 Hours"
     },
     "team": [],
     "tags": [],
     "organizer": "NSS IIT BBS",
-    "contact": "sharmaji12161289@gmail.com"
   },
-  {
-    "title": "Integration Test Event - 9/18/2025, 7:21:10 PM",
-    "date": "2025-09-18",
-    "summary": "This is a comprehensive test event created by the enhanced integration system to verify all functionality is working correctly.",
-    "content": "This test event was automatically generated on 9/18/2025, 7:21:10 PM to verify the Google Form integration system is functioning properly.\n\nThe integration system successfully:\n? Parsed form submission data\n? Validated required fields\n? Connected to GitHub API\n? Retrieved existing blog posts\n? Added new event to the collection\n? Updated the repository with new content\n\nThis test event can be safely deleted after verification. The system is now ready for production use with real form submissions.\n\nKey Features Tested:\n- Form data parsing and validation\n- GitHub API authentication and connectivity\n- File content retrieval and parsing\n- Blog post array manipulation\n- Content generation and formatting\n- Repository upload and commit creation\n- Error handling and notification system\n\nSystem Configuration:\n- Repository: Himsh1216/NSS-website\n- File Path: backend/blogPosts.js\n- Debug Mode: Enabled",
-    "image": "/api/placeholder/400/300",
-    "imageAlt": "Integration test event placeholder image",
-    "stats": {
-      "type": "System Test",
-      "participants": 1,
-      "location": "Google Apps Script Environment",
-      "duration": "Automated"
-    },
-    "team": [
-      "Integration Test System",
-      "NSS Website Automation"
-    ],
-    "tags": [
-      "test",
-      "integration",
-      "automation",
-      "system-check"
-    ],
-    "organizer": "NSS IIT BBS - Integration System v2.0",
-    "contact": "sharmaji12161289@gmail.com"
-  },
+
   {
     "title": "Mega Blood Donation Camp Empowers Community at IIT Bhubaneswar",
     "date": "March 22nd, 2025",
