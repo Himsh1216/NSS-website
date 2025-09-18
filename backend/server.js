@@ -5,23 +5,29 @@ const express = require('express');
 const sgMail = require('@sendgrid/mail');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const { OAuth2Client } = require('google-auth-library');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
-const blogPostsPath = path.join(__dirname, 'blogPosts.json');
-const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+const PORT = process.env.PORT || 5001;
+const blogPostsPath = path.join(__dirname, 'blogPosts.js');
 
 const readBlogPosts = () => {
     try {
-        return JSON.parse(fs.readFileSync(blogPostsPath, 'utf8'));
+        // Clear require cache to get fresh data
+        delete require.cache[require.resolve('./blogPosts.js')];
+        return require('./blogPosts.js');
     } catch (err) {
+        console.error('Error reading blog posts:', err.message);
         return [];
     }
 };
 
 const writeBlogPosts = (posts) => {
-    fs.writeFileSync(blogPostsPath, JSON.stringify(posts, null, 2));
+    const content = `// Auto-generated blog posts file
+// Last updated: ${new Date().toISOString()}
+
+module.exports = ${JSON.stringify(posts, null, 2)};
+`;
+    fs.writeFileSync(blogPostsPath, content);
 };
 
 // Initialize SendGrid
@@ -201,46 +207,19 @@ app.get('/api/blog-posts', (req, res) => {
     res.json(readBlogPosts());
 });
 
-app.post('/api/blog-posts', async (req, res) => {
-    const auth = req.headers['authorization'] || '';
-    const token = auth.startsWith('Bearer ') ? auth.slice(7) : null;
-    if (!token) {
-        return res.status(401).json({ success: false, message: 'Unauthorized' });
-    }
-
+// Blog posts creation endpoint (for Google Form integration)
+app.post('/api/blog-posts', (req, res) => {
     try {
-        const ticket = await googleClient.verifyIdToken({ idToken: token, audience: process.env.GOOGLE_CLIENT_ID });
-        const payload = ticket.getPayload();
-        if (payload.email !== 'coordinator.nss@iitbbs.ac.in') {
-            return res.status(403).json({ success: false, message: 'Forbidden' });
-        }
-    } catch (err) {
-        return res.status(401).json({ success: false, message: 'Invalid token' });
+        const posts = readBlogPosts();
+        posts.unshift(req.body);
+        writeBlogPosts(posts);
+        res.status(201).json({ success: true, message: 'Blog post added successfully' });
+    } catch (error) {
+        console.error('Error adding blog post:', error);
+        res.status(500).json({ success: false, message: 'Failed to add blog post', error: error.message });
     }
-
-    const posts = readBlogPosts();
-    posts.unshift(req.body);
-    writeBlogPosts(posts);
-    res.status(201).json({ success: true });
 });
 
-app.post('/api/admin/verify', async (req, res) => {
-    const auth = req.headers['authorization'] || '';
-    const token = auth.startsWith('Bearer ') ? auth.slice(7) : null;
-    if (!token) {
-        return res.status(401).json({ success: false });
-    }
-    try {
-        const ticket = await googleClient.verifyIdToken({ idToken: token, audience: process.env.GOOGLE_CLIENT_ID });
-        const payload = ticket.getPayload();
-        if (payload.email === 'coordinator.nss@iitbbs.ac.in') {
-            return res.json({ success: true });
-        }
-        return res.status(403).json({ success: false });
-    } catch (err) {
-        return res.status(401).json({ success: false });
-    }
-});
 
 // Catch-all route for React app
 app.get('*', (req, res) => {

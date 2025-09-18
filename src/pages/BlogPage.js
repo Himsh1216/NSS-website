@@ -4,15 +4,23 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const NSSBlog = () => {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedYear, setSelectedYear] = useState('all');
   const [selectedPost, setSelectedPost] = useState(null);
 
   useEffect(() => {
+    setLoading(true);
     fetch('/api/blog-posts')
       .then(res => res.json())
-      .then(data => setPosts(data))
-      .catch(() => setPosts([]));
+      .then(data => {
+        setPosts(Array.isArray(data) ? data : []);
+        setLoading(false);
+      })
+      .catch(() => {
+        setPosts([]);
+        setLoading(false);
+      });
   }, []);
 
   const filteredPosts = posts.filter(post => {
@@ -61,7 +69,23 @@ const NSSBlog = () => {
 
         {/* Blog Grid */}
         <div className="row">
-          {filteredPosts.map((post, index) => (
+          {loading ? (
+            <div className="col-12 text-center py-5">
+              <div className="spinner-border text-primary" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+              <p className="mt-3 text-muted">Loading events...</p>
+            </div>
+          ) : filteredPosts.length === 0 ? (
+            <div className="col-12 text-center py-5">
+              <div className="text-muted">
+                <Calendar size={48} className="mb-3 opacity-50" />
+                <h4>No events found</h4>
+                <p>Blog posts will appear here when available.</p>
+              </div>
+            </div>
+          ) : (
+            filteredPosts.map((post, index) => (
             <div key={index} className="col-md-6 col-lg-4 mb-4">
               <div className="card team-card h-100 shadow hover-lift">
                 <div className="position-relative">
@@ -74,7 +98,7 @@ const NSSBlog = () => {
                   <div className="card-img-overlay gradient-overlay d-flex flex-column justify-content-between">
                     <div className="d-flex justify-content-end">
                       <span className="badge bg-light text-primary">
-                        {post.stats.type}
+                        {post.stats?.type || 'Event'}
                       </span>
                     </div>
                     <div className="text-white p-3">
@@ -95,7 +119,8 @@ const NSSBlog = () => {
                 </div>
               </div>
             </div>
-          ))}
+          ))
+          )}
         </div>
 
         {/* Modal */}
@@ -121,7 +146,7 @@ const NSSBlog = () => {
                     <Calendar size={16} className="me-2" />
                     {selectedPost?.date}
                   </div>
-                  {selectedPost?.stats.participants && (
+                  {selectedPost?.stats?.participants && (
                     <div className="d-flex align-items-center text-muted">
                       <Users size={16} className="me-2" />
                       {selectedPost?.stats.participants} Participants

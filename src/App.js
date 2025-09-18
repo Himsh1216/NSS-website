@@ -8,7 +8,6 @@ import HomePage from './pages/HomePage';
 import TeamPage from './pages/TeamPage';
 import About from './pages/About';
 import NSSBlog from './pages/BlogPage';
-import AdminBlog from './pages/AdminBlog';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
@@ -23,7 +22,6 @@ function App() {
         <Route path="/team" element={<TeamPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/blog" element={<NSSBlog />} />
-        <Route path="/admin" element={<AdminBlog />} />
 
         </Routes>
       <Footer />

@@ -62,8 +62,7 @@ const Navbar = () => {
               { path: '/', label: 'Home' },
               { path: '/team', label: 'Team' },
               { path: '/about', label: 'About' },
-              { path: '/blog', label: 'Blog' },
-              { path: '/admin', label: 'Admin' }
+              { path: '/blog', label: 'Blog' }
             ].map((item) => (
               <li className="nav-item" key={item.path}>
                 <Link

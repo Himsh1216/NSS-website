@@ -116,9 +116,21 @@ const HomePage = () => {
   try {
     console.log('Starting form submission...'); // Debug log
 
-    // Basic validation
-    if (!formData.name || !formData.email || !formData.phone || !formData.occupation) {
+    // Enhanced validation
+    if (!formData.name || !formData.email || !formData.phone || !formData.occupation || !formData.reason || !formData.availability) {
       throw new Error('Please fill in all required fields');
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      throw new Error('Please enter a valid email address');
+    }
+
+    // Phone validation (basic)
+    const phoneRegex = /^[0-9]{10}$/;
+    if (!phoneRegex.test(formData.phone.replace(/\D/g, ''))) {
+      throw new Error('Please enter a valid 10-digit phone number');
     }
 
     const emailContent = `
