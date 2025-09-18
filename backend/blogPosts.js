@@ -13,7 +13,7 @@ module.exports = [
     "imageAlt": "Ek Ped Maa Ke Naam 2.0",
     "stats": {
       "type": "Environmental",
-      "participants": 0,
+      "participants": 60,
       "location": "IIT Bhubaneswar",
       "duration": "2 Hours"
     },
