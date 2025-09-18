@@ -50,7 +50,7 @@ const Footer = () => {
             <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" className="social-icon">
               <i className="fab fa-twitter fa-2x"></i>
             </a>
-            <a href="https://www.instagram.com/explore/locations/1087982591342163/nss-iit-bhubaneswar/" target="_blank" rel="noopener noreferrer" className="social-icon">
+            <a href="https://www.instagram.com/nssiitbbs/" target="_blank" rel="noopener noreferrer" className="social-icon">
               <i className="fab fa-instagram fa-2x"></i>
             </a>
             <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="social-icon">
