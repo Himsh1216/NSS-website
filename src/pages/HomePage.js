@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Calendar, Users, Award, ArrowRight, Mail, Phone, MapPin } from "lucide-react";
+import { Calendar, Users, Award, ArrowRight } from "lucide-react";
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './HomePage.css';  // We'll create this next
+import './HomePage.css';
 
 const HomePage = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
@@ -49,7 +49,53 @@ const HomePage = () => {
     fetch('/api/blog-posts')
       .then(res => res.json())
       .then(data => setEventReports(data.slice(0, 6)))
-      .catch(() => setEventReports([]));
+      .catch(() => {
+        // Fallback events when API is not available
+        setEventReports([
+          {
+            id: 1,
+            title: "Tree Plantation Drive",
+            date: "2024-03-15",
+            image: "/Initiatives_photos/Environmental_photo.jpeg",
+            summary: "NSS volunteers planted 200+ trees in collaboration with local communities"
+          },
+          {
+            id: 2,
+            title: "Health Awareness Camp",
+            date: "2024-03-10",
+            image: "/Initiatives_photos/Health_photo.jpeg",
+            summary: "Free health checkups and awareness sessions conducted in nearby villages"
+          },
+          {
+            id: 3,
+            title: "Village Development Program",
+            date: "2024-03-05",
+            image: "/Initiatives_photos/Village_adoption_photo.jpeg",
+            summary: "Educational workshops and infrastructure development in adopted villages"
+          },
+          {
+            id: 4,
+            title: "Youth Empowerment Workshop",
+            date: "2024-02-28",
+            image: "/Initiatives_photos/Youth_empowerment.jpeg",
+            summary: "Leadership development and skill building sessions for local youth"
+          },
+          {
+            id: 5,
+            title: "Entrepreneurship Conclave",
+            date: "2024-02-20",
+            image: "/Initiatives_photos/Entreprenuership_photo.jpeg",
+            summary: "Supporting rural entrepreneurship through mentorship and resources"
+          },
+          {
+            id: 6,
+            title: "Community Cleanliness Drive",
+            date: "2024-02-15",
+            image: "/Initiatives_photos/Environmental_photo.jpeg",
+            summary: "Large-scale cleanliness initiative involving 100+ volunteers"
+          }
+        ]);
+      });
   }, []);
 
   const volunteerActivities = [
@@ -92,6 +138,30 @@ const HomePage = () => {
     }, 5000);
     return () => clearInterval(timer);
   }, []);
+
+  // Intersection Observer for animations
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all animatable elements
+    const elements = document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right');
+    elements.forEach(el => observer.observe(el));
+
+    return () => {
+      elements.forEach(el => observer.unobserve(el));
+    };
+  }, [eventReports]); // Re-run when events are loaded
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -206,8 +276,8 @@ const HomePage = () => {
 
   return (
     <div className="min-vh-100">
-      {/* Hero Section */}
-      <section className="position-relative vh-100">
+      {/* Enhanced Hero Section */}
+      <section className="hero-section position-relative vh-100">
         {heroImages.map((image, index) => (
           <div
             key={index}
@@ -219,15 +289,15 @@ const HomePage = () => {
             <img
               src={image.src}
               alt={image.alt}
-              className="w-100 h-100"
+              className="hero-image w-100 h-100"
               style={{ objectFit: "cover" }}
             />
             <div className="hero-overlay" />
-            <div className="position-absolute top-50 start-50 translate-middle text-center text-white w-100 px-4">
-              <h1 className="display-3 fw-bold mb-4">{image.caption}</h1>
-              <p className="lead mb-4">{image.subCaption}</p>
-              <button 
-                className="btn btn-primary btn-lg px-5 py-3 rounded-pill"
+            <div className="hero-content position-absolute top-50 start-50 translate-middle text-center text-white w-100 px-4">
+              <h1 className="hero-title">{image.caption}</h1>
+              <p className="hero-subtitle">{image.subCaption}</p>
+              <button
+                className="hero-cta-button btn text-white pulse-on-hover"
                 onClick={() => setShowRegistrationForm(true)}
               >
                 Join NSS Today
@@ -237,86 +307,77 @@ const HomePage = () => {
         ))}
       </section>
 
-      {/* Previous sections remain the same */}
-      {/* Stats Section */}
-      <section className="py-5 bg-light">
+      {/* Enhanced Stats Section */}
+      <section className="stats-section">
         <div className="container">
           <div className="row g-4">
             <div className="col-md-4">
-              <div className="card h-100 text-center p-4">
-                <div className="card-body">
-                  <Users className="text-primary mb-3" size={48} />
-                  <h3 className="display-5 fw-bold">{stats.volunteers}+</h3>
-                  <p className="text-muted">Active Volunteers</p>
-                </div>
+              <div className="stats-card h-100 text-center fade-in-up">
+                <Users className="stats-icon floating" size={48} />
+                <span className="stats-number">{stats.volunteers}+</span>
+                <p className="stats-label">Active Volunteers</p>
               </div>
             </div>
             <div className="col-md-4">
-              <div className="card h-100 text-center p-4">
-                <div className="card-body">
-                  <Calendar className="text-primary mb-3" size={48} />
-                  <h3 className="display-5 fw-bold">{stats.events}+</h3>
-                  <p className="text-muted">Events This Year</p>
-                </div>
+              <div className="stats-card h-100 text-center fade-in-up">
+                <Calendar className="stats-icon floating" size={48} />
+                <span className="stats-number">{stats.events}+</span>
+                <p className="stats-label">Events This Year</p>
               </div>
             </div>
             <div className="col-md-4">
-              <div className="card h-100 text-center p-4">
-                <div className="card-body">
-                  <Award className="text-primary mb-3" size={48} />
-                  <h3 className="display-5 fw-bold">{stats.hours}+</h3>
-                  <p className="text-muted">Volunteer Hours</p>
-                </div>
+              <div className="stats-card h-100 text-center fade-in-up">
+                <Award className="stats-icon floating" size={48} />
+                <span className="stats-number">{stats.hours}+</span>
+                <p className="stats-label">Volunteer Hours</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* About Section */}
-      <section className="py-5">
+      {/* Enhanced About Section */}
+      <section className="about-section">
         <div className="container">
-          <div className="text-center max-width-3xl mx-auto">
-            <h2 className="display-4 fw-bold mb-4">About NSS IIT BBS</h2>
-            <p className="lead text-muted mb-5">
-              The NSS Club of IIT Bhubaneswar is dedicated to fostering social responsibility 
-              and community engagement among students. Through various initiatives and programs, 
-              we work towards creating positive change in society while developing leadership 
+          <div className="about-content fade-in-up">
+            <h2 className="about-title">About NSS IIT BBS</h2>
+            <p className="about-text">
+              The NSS Club of IIT Bhubaneswar is dedicated to fostering social responsibility
+              and community engagement among students. Through various initiatives and programs,
+              we work towards creating positive change in society while developing leadership
               skills and civic consciousness in our volunteers.
             </p>
-            <Link to="/About" className="btn btn-primary btn-lg px-5 py-3 rounded-pill">
-              Learn More 
+            <Link to="/About" className="about-cta btn text-white pulse-on-hover">
+              Learn More
               <ArrowRight className="ms-2" size={20} />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Events Section */}
-      <section className="py-5 bg-light">
+      {/* Enhanced Events Section */}
+      <section className="events-section">
         <div className="container">
-          <h2 className="display-4 fw-bold text-center mb-5">Recent Events</h2>
+          <h2 className="section-title fade-in-up">Recent Events</h2>
           <div className="row g-4">
             {eventReports.map((event, index) => (
               <div className="col-md-4" key={index}>
                 <div
-                  className="card h-100 border-0 overflow-hidden cursor-pointer"
+                  className="event-card h-100 cursor-pointer fade-in-up"
                   onClick={() => setSelectedEvent(event)}
-                  style={{ cursor: 'pointer' }}
+                  style={{ cursor: 'pointer', animationDelay: `${index * 0.1}s` }}
                 >
-                  <div className="position-relative">
+                  <div className="position-relative overflow-hidden">
                     <img
                       src={event.image}
                       alt={event.title}
-                      className="card-img"
-                      style={{ height: '300px', objectFit: 'cover' }}
+                      className="event-image w-100"
                     />
-                    <div className={`card-img-overlay d-flex flex-column justify-content-end ${event.overlayClass || 'bg-dark'}`}
-                         style={{ opacity: 0.9 }}>
+                    <div className="event-overlay card-img-overlay d-flex flex-column justify-content-end">
                       <div className="text-white">
-                        <small className="d-inline-block mb-2">{event.date}</small>
-                        <h3 className="h4 fw-bold">{event.title}</h3>
-                        <p className="small">{event.summary}</p>
+                        <small className="d-inline-block mb-2 opacity-75">{event.date}</small>
+                        <h3 className="h4 fw-bold mb-2">{event.title}</h3>
+                        <p className="small opacity-90">{event.summary}</p>
                       </div>
                     </div>
                   </div>
@@ -518,22 +579,22 @@ const HomePage = () => {
                   onClick={() => setSelectedEvent(null)}
                 ></button>
               </div>
-              <div className="modal-body p-0">
-                <div className="event-image-container">
+              <div className="modal-body">
+                <div className="event-image-container mb-3" style={{ margin: '-1.5rem -1.5rem 1rem -1.5rem' }}>
                   <img
                     src={selectedEvent.image}
                     alt={selectedEvent.title}
                     className="event-image"
                   />
                 </div>
-                <div className="p-4">
+                <div>
                   <div className="d-flex align-items-center text-muted mb-3">
                     <Calendar size={20} className="me-2" />
                     <span>{selectedEvent.date}</span>
                   </div>
-                  <p className="text-muted">{selectedEvent.summary}</p>
-                  </div>
+                  <p className="text-muted mb-0">{selectedEvent.summary}</p>
                 </div>
+              </div>
               </div>
             </div>
         </div>

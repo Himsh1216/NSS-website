@@ -60,6 +60,9 @@ app.use(bodyParser.json({ limit: '10kb' }));
 // Static file serving
 app.use(express.static(path.join(__dirname, '../build')));
 
+// Serve Team_photos from public directory
+app.use('/Team_photos', express.static(path.join(__dirname, '../public/Team_photos')));
+
 
 
 // Request logging middleware

@@ -16,7 +16,7 @@ module.exports = [
       "participants": 60,
       "location": "IIT Bhubaneswar",
       "duration": "2 Hours"
-    }
+    },
     "organizer": "NSS IIT BBS",
   },
 

@@ -130,11 +130,11 @@ const NSSBlog = () => {
              onClick={() => setSelectedPost(null)}>
           <div className="modal-dialog modal-lg" onClick={e => e.stopPropagation()}>
             <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title">{selectedPost?.title}</h5>
+              <div className="modal-header border-0 pb-0">
+                <h5 className="modal-title fw-bold">{selectedPost?.title}</h5>
                 <button type="button" className="btn-close" onClick={() => setSelectedPost(null)}></button>
               </div>
-              <div className="modal-body">
+              <div className="modal-body p-4">
                 <img
                   src={selectedPost?.image}
                   alt={selectedPost?.imageAlt}
@@ -221,6 +221,35 @@ const NSSBlog = () => {
             .modal-content {
               border-radius: 15px;
               border: none;
+              box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            }
+
+            .modal-header {
+              padding: 1.5rem 1.5rem 0 1.5rem;
+            }
+
+            .modal-body {
+              padding: 1.5rem !important;
+              max-height: 70vh;
+              overflow-y: auto;
+            }
+
+            .modal-body::-webkit-scrollbar {
+              width: 6px;
+            }
+
+            .modal-body::-webkit-scrollbar-track {
+              background: #f1f1f1;
+              border-radius: 3px;
+            }
+
+            .modal-body::-webkit-scrollbar-thumb {
+              background: #c1c1c1;
+              border-radius: 3px;
+            }
+
+            .modal-body::-webkit-scrollbar-thumb:hover {
+              background: #a8a8a8;
             }
 
             .modal.show {

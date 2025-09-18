@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { UserCircle } from 'lucide-react';
 
 
 const TeamPage = () => {
+  // State for active team tab
+  const [activeTeam, setActiveTeam] = useState('technical');
   // Faculty Coordinator
   const coordinator = [
     {
@@ -232,48 +234,74 @@ const TeamPage = () => {
             className="mentor-section"
           />
         </section>
-      {/* Technical Team */}
-      <section className="mb-5">
-          <h2 className="h3 mb-4 text-center">NSS Technical Team</h2>
-          
-        {/* Technical Team Coordinators */}
-        <TeamSection 
-          title="Technical Team Coordinators" 
-          members={techCoordinators} 
-          className="technical-coordinators"
-        />
-
-        {/* Technical Sub-teams */}
-        {Object.values(technicalTeams).map((team, index) => (
-          <TeamSection 
-            key={index}
-            title={team.title} 
-            members={team.members} 
-            className="technical-subteam"
-          />
-        ))}
-      </section>
-
-        {/* Cultural Team */}
+        {/* Team Segregation Section */}
         <section className="mb-5">
-          <h2 className="h3 mb-4 text-center">NSS Cultural Team</h2>
-          
-          {/* Cultural Team Coordinators */}
-          <TeamSection 
-            title="Cultural Team Coordinators" 
-            members={cultCoordinators} 
-            className="cultural-coordinators"
-          />
+          <div className="bg-white rounded-3 p-4 shadow-sm">
+            <h2 className="h3 mb-4 text-center text-dark">NSS Teams</h2>
 
-          {/* Cultural Sub-teams */}
-          {Object.values(culturalTeams).map((team, index) => (
-            <TeamSection 
-              key={index}
-              title={team.title} 
-              members={team.members} 
-              className="cultural-subteam"
-            />
-          ))}
+            {/* Sub-navigation */}
+            <div className="d-flex justify-content-center mb-4">
+              <div className="btn-group" role="group">
+                <button
+                  type="button"
+                  className={`btn ${activeTeam === 'technical' ? 'btn-primary' : 'btn-outline-primary'}`}
+                  onClick={() => setActiveTeam('technical')}
+                >
+                  <i className="fas fa-code me-2"></i>
+                  Technical Team
+                </button>
+                <button
+                  type="button"
+                  className={`btn ${activeTeam === 'management' ? 'btn-primary' : 'btn-outline-primary'}`}
+                  onClick={() => setActiveTeam('management')}
+                >
+                  <i className="fas fa-users me-2"></i>
+                  Management Team
+                </button>
+              </div>
+            </div>
+
+            {/* Team Content */}
+            <div className="team-content">
+              {activeTeam === 'technical' && (
+                <div>
+                  {/* Technical Team Coordinators */}
+                  <TeamSection
+                    title="Technical Team Coordinators"
+                    members={techCoordinators}
+                  />
+
+                  {/* Technical Sub-teams */}
+                  {Object.values(technicalTeams).map((team, index) => (
+                    <TeamSection
+                      key={index}
+                      title={team.title}
+                      members={team.members}
+                    />
+                  ))}
+                </div>
+              )}
+
+              {activeTeam === 'management' && (
+                <div>
+                  {/* Cultural/Management Team Coordinators */}
+                  <TeamSection
+                    title="Management Team Coordinators"
+                    members={cultCoordinators}
+                  />
+
+                  {/* Management Sub-teams */}
+                  {Object.values(culturalTeams).map((team, index) => (
+                    <TeamSection
+                      key={index}
+                      title={team.title}
+                      members={team.members}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
         </section>
       </div>
       
@@ -385,6 +413,20 @@ const TeamPage = () => {
 
             .display-4 {
               font-size: 2.5rem;
+            }
+
+            .btn-group {
+              flex-direction: column;
+              width: 100%;
+            }
+
+            .btn-group .btn {
+              border-radius: 0.375rem !important;
+              margin-bottom: 0.5rem;
+            }
+
+            .btn-group .btn:last-child {
+              margin-bottom: 0;
             }
           }
 

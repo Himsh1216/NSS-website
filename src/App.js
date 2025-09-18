@@ -1,4 +1,3 @@
-// File: src/App.js
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Analytics } from '@vercel/analytics/react';
