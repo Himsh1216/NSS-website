@@ -43,6 +43,12 @@ const HomePage = () => {
     },
   ];
 
+  const heroHighlights = [
+    'Community Outreach',
+    'Leadership in Action',
+    'Sustainable Impact'
+  ];
+
   const [eventReports, setEventReports] = useState([]);
 
   useEffect(() => {
@@ -137,7 +143,7 @@ const HomePage = () => {
       setCurrentSlide((prev) => (prev + 1) % heroImages.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [heroImages.length]);
 
   // Intersection Observer for animations
   useEffect(() => {
@@ -302,6 +308,13 @@ const HomePage = () => {
               >
                 Join NSS Today
               </button>
+              <div className="hero-highlights">
+                {heroHighlights.map((highlight) => (
+                  <span className="hero-pill" key={highlight}>
+                    {highlight}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         ))}
@@ -309,7 +322,12 @@ const HomePage = () => {
 
       {/* Enhanced Stats Section */}
       <section className="stats-section">
-        <div className="container">
+        <div className="stats-backdrop" aria-hidden="true">
+          <span className="stats-glow stats-glow-one" />
+          <span className="stats-glow stats-glow-two" />
+          <span className="stats-grid" />
+        </div>
+        <div className="container position-relative">
           <div className="row g-4">
             <div className="col-md-4">
               <div className="stats-card h-100 text-center fade-in-up">

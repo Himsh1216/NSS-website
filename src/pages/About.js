@@ -7,6 +7,11 @@ const About = () => {
   const [impactNumbers, setImpactNumbers] = useState({});
 
   const heroBackgroundImage = '/NSS_about_photo.jpg';
+  const heroHighlights = [
+    'Community-Centric Projects',
+    'Leadership & Service Learning',
+    'Sustainable Rural Impact'
+  ];
 
   const initiatives = [
     {
@@ -114,47 +119,64 @@ const About = () => {
       number: 5,
       label: 'Villages Adopted',
       color: 'primary',
-      duration: 1500
+      duration: 1500,
+      icon: '🏡',
+      description: 'Long-term partnerships with adopted villages for holistic growth.'
     },
     {
       number: 1000,
       suffix: '+',
       label: 'Trees Planted',
       color: 'success',
-      duration: 2000
+      duration: 2000,
+      icon: '🌳',
+      description: 'Sustainable plantation drives led by dedicated volunteers.'
     },
     {
       number: 50,
       suffix: '+',
       label: 'Annual Events',
       color: 'info',
-      duration: 1500
+      duration: 1500,
+      icon: '📅',
+      description: 'Workshops, health camps, drives and awareness programs each year.'
     },
     {
       number: 5000,
       suffix: '+',
       label: 'Lives Impacted',
       color: 'warning',
-      duration: 2500
+      duration: 2500,
+      icon: '🤝',
+      description: 'Beneficiaries reached through our community and campus initiatives.'
     }
   ];
 
   // Counter Component
-  const CountUpNumber = ({ endNumber, duration, suffix = '', color, label, index }) => {
+  const CountUpNumber = ({ endNumber, duration, suffix = '', color, label, index, icon, description }) => {
     const [count, setIsVisible] = useCountUp(endNumber, duration);
 
+    const shouldAnimate = impactNumbers[index];
+
     useEffect(() => {
-      if (impactNumbers[index]) {
+      if (shouldAnimate) {
         setIsVisible(true);
       }
-    }, [impactNumbers, index, setIsVisible]);
+    }, [shouldAnimate, setIsVisible]);
 
     return (
       <div className={`impact-card ${color}`} data-index={index}>
+        <div className="impact-card-backdrop" aria-hidden="true" />
+        {icon && (
+          <div className="impact-icon" aria-hidden="true">{icon}</div>
+        )}
         <div className="impact-number">
           {count}{suffix}
         </div>
         <div className="impact-label">{label}</div>
+        {description && (
+          <p className="impact-description">{description}</p>
+        )}
       </div>
     );
   };
@@ -176,6 +198,13 @@ const About = () => {
             We believe in creating positive change through dedicated service to society.
           </p>
         </div>
+        <div className="about-hero-highlights">
+          {heroHighlights.map((highlight) => (
+            <span className="about-hero-badge" key={highlight}>
+              {highlight}
+            </span>
+          ))}
+        </div>
         <div className="scroll-indicator">
           <ChevronDown size={32} />
         </div>
@@ -183,7 +212,12 @@ const About = () => {
 
       {/* Enhanced Impact Stats Section */}
       <section className="impact-stats-section">
-        <div className="container">
+        <div className="impact-stats-backdrop" aria-hidden="true">
+          <span className="impact-backdrop-glow glow-one" />
+          <span className="impact-backdrop-glow glow-two" />
+          <span className="impact-backdrop-ring" />
+        </div>
+        <div className="container position-relative">
           <h2 className="impact-stats-title fade-in-up">Our Impact</h2>
           <div className="row g-4">
             {impactData.map((item, index) => (
@@ -195,6 +229,8 @@ const About = () => {
                   color={item.color}
                   label={item.label}
                   index={index}
+                  icon={item.icon}
+                  description={item.description}
                 />
               </div>
             ))}
