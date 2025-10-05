@@ -12,21 +12,34 @@ const NSSBlog = () => {
   useEffect(() => {
     setLoading(true);
     fetch('/api/blog-posts')
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      })
       .then(data => {
-        setPosts(Array.isArray(data) ? data : []);
+        if (Array.isArray(data)) {
+          setPosts(data);
+        } else if (data && typeof data === 'object' && Array.isArray(data.posts)) {
+          setPosts(data.posts);
+        } else {
+          console.warn('Unexpected API response format:', data);
+          setPosts([]);
+        }
         setLoading(false);
       })
-      .catch(() => {
+      .catch(error => {
+        console.error('Failed to fetch blog posts:', error);
         setPosts([]);
         setLoading(false);
       });
   }, []);
 
   const filteredPosts = posts.filter(post => {
-    const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           post.content.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesYear = selectedYear === 'all' || post.date.includes(selectedYear);
+    const matchesSearch = (post.title || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+                           (post.content || '').toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesYear = selectedYear === 'all' || (post.date || '').includes(selectedYear);
     return matchesSearch && matchesYear;
   });
 
@@ -35,7 +48,7 @@ const NSSBlog = () => {
       <div className="container">
         {/* Header Section */}
         <header className="text-center mb-5">
-          <h1 className="display-4 mb-3">NSS Events</h1>
+          <h1 className="display-4 mb-3">NSS Blog</h1>
           <p className="lead text-muted">Discover our journey of service and impact</p>
         </header>
 
@@ -46,7 +59,7 @@ const NSSBlog = () => {
               <Search className="position-absolute top-50 translate-middle-y" style={{ left: '15px' }} />
               <input
                 type="text"
-                placeholder="Search events..."
+                placeholder="Search blog posts..."
                 className="form-control form-control-lg ps-5"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -74,26 +87,29 @@ const NSSBlog = () => {
               <div className="spinner-border text-primary" role="status">
                 <span className="visually-hidden">Loading...</span>
               </div>
-              <p className="mt-3 text-muted">Loading events...</p>
+              <p className="mt-3 text-muted">Loading blog posts...</p>
             </div>
           ) : filteredPosts.length === 0 ? (
             <div className="col-12 text-center py-5">
               <div className="text-muted">
                 <Calendar size={48} className="mb-3 opacity-50" />
-                <h4>No events found</h4>
+                <h4>No blog posts found</h4>
                 <p>Blog posts will appear here when available.</p>
               </div>
             </div>
           ) : (
             filteredPosts.map((post, index) => (
-            <div key={index} className="col-md-6 col-lg-4 mb-4">
+            <div key={post.id || `post-${index}`} className="col-md-6 col-lg-4 mb-4">
               <div className="card team-card h-100 shadow hover-lift">
                 <div className="position-relative">
                   <img
-                    src={post.image}
-                    alt={post.imageAlt}
+                    src={post.image && !post.image.includes('/api/placeholder') ? post.image : 'https://via.placeholder.com/400x300?text=NSS+Event'}
+                    alt={post.imageAlt || post.title}
                     className="card-img-top team-image"
                     style={{ height: '300px', objectFit: 'cover' }}
+                    onError={(e) => {
+                      e.target.src = 'https://via.placeholder.com/400x300?text=NSS+Event';
+                    }}
                   />
                   <div className="card-img-overlay gradient-overlay d-flex flex-column justify-content-between">
                     <div className="d-flex justify-content-end">
@@ -124,56 +140,67 @@ const NSSBlog = () => {
         </div>
 
         {/* Modal */}
-        <div className={`modal fade ${selectedPost ? 'show' : ''}`} 
-             style={{ display: selectedPost ? 'block' : 'none' }}
-             tabIndex="-1"
-             onClick={() => setSelectedPost(null)}>
-          <div className="modal-dialog modal-lg" onClick={e => e.stopPropagation()}>
-            <div className="modal-content">
-              <div className="modal-header border-0 pb-0">
-                <h5 className="modal-title fw-bold">{selectedPost?.title}</h5>
-                <button type="button" className="btn-close" onClick={() => setSelectedPost(null)}></button>
-              </div>
-              <div className="modal-body p-4">
-                <img
-                  src={selectedPost?.image}
-                  alt={selectedPost?.imageAlt}
-                  className="img-fluid rounded mb-4"
-                />
-                
-                <div className="d-flex gap-3 mb-4">
-                  <div className="d-flex align-items-center text-muted">
-                    <Calendar size={16} className="me-2" />
-                    {selectedPost?.date}
+        {selectedPost && (
+          <>
+            <div className="modal-backdrop fade show" onClick={() => setSelectedPost(null)}></div>
+            <div className="modal fade show" 
+                 style={{ display: 'block' }}
+                 tabIndex="-1"
+                 role="dialog"
+                 aria-labelledby="blogModalTitle"
+                 aria-hidden="false"
+                 onClick={() => setSelectedPost(null)}>
+              <div className="modal-dialog modal-lg" onClick={e => e.stopPropagation()}>
+                <div className="modal-content">
+                  <div className="modal-header border-0 pb-0">
+                    <h5 id="blogModalTitle" className="modal-title fw-bold">{selectedPost?.title}</h5>
+                    <button type="button" className="btn-close" aria-label="Close" onClick={() => setSelectedPost(null)}></button>
                   </div>
-                  {selectedPost?.stats?.participants && (
-                    <div className="d-flex align-items-center text-muted">
-                      <Users size={16} className="me-2" />
-                      {selectedPost?.stats.participants} Participants
+                  <div className="modal-body p-4">
+                    <img
+                      src={selectedPost?.image && !selectedPost.image.includes('/api/placeholder') ? selectedPost.image : 'https://via.placeholder.com/600x400?text=NSS+Event'}
+                      alt={selectedPost?.imageAlt || selectedPost?.title}
+                      className="img-fluid rounded mb-4"
+                      onError={(e) => {
+                        e.target.src = 'https://via.placeholder.com/600x400?text=NSS+Event';
+                      }}
+                    />
+                    
+                    <div className="d-flex gap-3 mb-4">
+                      <div className="d-flex align-items-center text-muted">
+                        <Calendar size={16} className="me-2" />
+                        {selectedPost?.date}
+                      </div>
+                      {selectedPost?.stats?.participants > 0 && (
+                        <div className="d-flex align-items-center text-muted">
+                          <Users size={16} className="me-2" />
+                          {selectedPost?.stats.participants} Participants
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
 
-                <div className="prose">
-                  {selectedPost?.content.split('\n\n').map((paragraph, idx) => (
-                    <p key={idx} className="mb-4">{paragraph}</p>
-                  ))}
-                </div>
-
-                {selectedPost?.team && (
-                  <div className="mt-4">
-                    <h4>Team Members</h4>
-                    <ul className="list-unstyled">
-                      {selectedPost.team.map((member, idx) => (
-                        <li key={idx} className="mb-2">{member}</li>
+                    <div className="prose">
+                      {selectedPost?.content.split(/\n\s*\n|\?\s/).filter(p => p.trim()).map((paragraph, idx) => (
+                        <p key={idx} className="mb-4">{paragraph.trim()}</p>
                       ))}
-                    </ul>
+                    </div>
+
+                    {selectedPost?.team && selectedPost.team.length > 0 && (
+                      <div className="mt-4">
+                        <h4>Team Members</h4>
+                        <ul className="list-unstyled">
+                          {selectedPost.team.map((member, idx) => (
+                            <li key={idx} className="mb-2">{member}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                   </div>
-                )}
+                </div>
               </div>
             </div>
-          </div>
-        </div>
+          </>
+        )}
         
         {/* CSS Styles */}
         <style>
@@ -214,7 +241,7 @@ const NSSBlog = () => {
               overflow: hidden;
             }
 
-            .modal {
+            .modal-backdrop {
               background-color: rgba(0,0,0,0.5);
             }
 
