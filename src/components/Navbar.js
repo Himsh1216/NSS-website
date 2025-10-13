@@ -22,6 +22,44 @@ const Navbar = () => {
     setIsMenuOpen(false);
   }, [location]);
 
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isMenuOpen && !event.target.closest('.navbar')) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [isMenuOpen]);
+
+  // Handle escape key
+  useEffect(() => {
+    const handleEscapeKey = (event) => {
+      if (event.key === 'Escape' && isMenuOpen) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleEscapeKey);
+    return () => document.removeEventListener('keydown', handleEscapeKey);
+  }, [isMenuOpen]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMenuOpen]);
+
   // Handle logo change based on screen size
   useEffect(() => {
     const updateLogo = () => {
@@ -56,7 +94,7 @@ const Navbar = () => {
         </Link>
 
         {/* Navigation Links */}
-        <div className={`collapse navbar-collapse ${isMenuOpen ? 'show' : ''}`}>
+        <div className={`collapse navbar-collapse ${isMenuOpen ? 'show' : ''}`} id="navbarNav">
           <ul className="navbar-nav mx-auto">
             {[
               { path: '/', label: 'Home' },
@@ -68,6 +106,7 @@ const Navbar = () => {
                 <Link
                   to={item.path}
                   className={`nav-link ${location.pathname === item.path ? 'active' : ''}`}
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   {item.label}
                   <span className="nav-line"></span>
@@ -81,7 +120,10 @@ const Navbar = () => {
         <button
           className={`navbar-toggler ms-auto ${isMenuOpen ? 'is-active' : ''}`}
           type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-controls="navbarNav"
           aria-expanded={isMenuOpen}
           aria-label="Toggle navigation"
         >
