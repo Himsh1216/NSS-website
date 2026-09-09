@@ -1,0 +1,106 @@
+{
+  "academicYear": "2024-25",
+  "note": "Roster shown on the Team page until September 2026. Image paths are relative to the site root; null means no photo was collected.",
+  "faculty": [
+    { "name": "Prof. Rajesh Roshan Dash", "role": "Dean Student Affairs", "image": "/Team_photos/archive/2024-25/Faculty/Rajesh_Roshan_sir.jpeg" },
+    { "name": "Dr. Sivaiah Bathula", "role": "NSS Faculty Coordinator", "image": "/Team_photos/archive/2024-25/Faculty/Sivaiah_Bathula_sir_photo.png" }
+  ],
+  "mentor": [
+    { "name": "Chandra Sekhar Karri", "role": "Team Mentor", "image": "/Team_photos/archive/2024-25/Mentor/Chandra_Sekhar_Karri_photo.jpeg" }
+  ],
+  "teams": [
+    {
+      "name": "Technical Team",
+      "coordinators": [
+        { "name": "Nitya Singh", "role": "Technical Team Coordinator", "image": "/Team_photos/archive/2024-25/Technical_team/Coordinators/Nitya_Singh_photo.jpeg" },
+        { "name": "Himanshu Sharma", "role": "Technical Team Coordinator", "image": "/Team_photos/archive/2024-25/Technical_team/Coordinators/Himanshu_photo.jpeg" }
+      ],
+      "subTeams": [
+        {
+          "name": "Design Team",
+          "members": [
+            { "name": "Omkar Anand Mishra", "role": "Team Leader", "image": "/Team_photos/archive/2024-25/Technical_team/Design_team/Omkar_Anand_photo.jpeg" },
+            { "name": "Sake Yuvasari", "role": "Team Executive", "image": "/Team_photos/archive/2024-25/Technical_team/Design_team/Suke_Yuvasari_photo.png" },
+            { "name": "Pragnya", "role": "Team Executive", "image": "/Team_photos/archive/2024-25/Technical_team/Design_team/Pragnya_photo.jpeg" },
+            { "name": "Bhumika", "role": "Team Executive", "image": "/Team_photos/archive/2024-25/Technical_team/Design_team/Bhumika_photo.jpeg" },
+            { "name": "Pawan Sai", "role": "Team Executive", "image": "/Team_photos/archive/2024-25/Technical_team/Design_team/Pawan_Sai_photo.jpeg" }
+          ]
+        },
+        {
+          "name": "Photography Team",
+          "members": [
+            { "name": "Khushboo Sangod", "role": "Team Leader", "image": "/Team_photos/archive/2024-25/Technical_team/Photography_team/Khushboo_photo.jpeg" },
+            { "name": "Vishal Prajapati", "role": "Team Executive", "image": "/Team_photos/archive/2024-25/Technical_team/Photography_team/Vishal_photo.jpeg" },
+            { "name": "Nitish", "role": "Team Executive", "image": "/Team_photos/archive/2024-25/Technical_team/Photography_team/Nitish_Reddy_photo.jpeg" }
+          ]
+        },
+        {
+          "name": "Drafting Team",
+          "members": [
+            { "name": "Budhwant Somani", "role": "Team Leader", "image": "/Team_photos/archive/2024-25/Technical_team/Drafting_team/Bhudwant_photo.jpeg" },
+            { "name": "Pranjal Rout", "role": "Team Executive", "image": "/Team_photos/archive/2024-25/Technical_team/Drafting_team/Pranjal_Rout_photo.jpeg" },
+            { "name": "Hari Kumar Saha", "role": "Team Executive", "image": "/Team_photos/archive/2024-25/Technical_team/Drafting_team/Hari_photo.jpg" }
+          ]
+        },
+        {
+          "name": "Blogging Team",
+          "members": [
+            { "name": "Prabhuparth Choudhar", "role": "Team Leader", "image": "/Team_photos/archive/2024-25/Technical_team/Blogging_team/Prabhuparth_Choudhar_photo.jpeg" },
+            { "name": "Shashank Vadekar", "role": "Team Executive", "image": "/Team_photos/archive/2024-25/Technical_team/Blogging_team/Shashank_photo.jpeg" },
+            { "name": "Nirmala Chinta", "role": "Team Executive", "image": "/Team_photos/archive/2024-25/Technical_team/Blogging_team/Nirmala_photo.jpeg" },
+            { "name": "Raam Sundaran", "role": "Team Executive", "image": "/Team_photos/archive/2024-25/Technical_team/Blogging_team/Raam_Sundaran_photo.jpeg" }
+          ]
+        },
+        {
+          "name": "Website Management Team",
+          "members": [
+            { "name": "Prakhar Soni", "role": "Team Leader", "image": "/Team_photos/archive/2024-25/Technical_team/Website_management_team/Prakhar_Soni_photo.jpeg" },
+            { "name": "Aman Kumar Choudhary", "role": "Team Executive", "image": "/Team_photos/archive/2024-25/Technical_team/Website_management_team/Aman_Choudary.jpg" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Management Team",
+      "coordinators": [
+        { "name": "Ankita Patra", "role": "NSS Cultural Team Coordinator", "image": "/Team_photos/archive/2024-25/Management_team/Coordinators/Ankita_Patra_photo.jpeg" },
+        { "name": "Satyam", "role": "NSS Cultural Team Coordinator", "image": "/Team_photos/archive/2024-25/Management_team/Coordinators/Satyam_photo.jpeg" }
+      ],
+      "subTeams": [
+        {
+          "name": "Food and Finance Team",
+          "members": [
+            { "name": "Chansu", "role": "Team Leader", "image": "/Team_photos/archive/2024-25/Management_team/Food_and_Finance_team/Chansu_Parte_photo.jpeg" },
+            { "name": "Abhishek Kumar Singh", "role": "Team Executive", "image": "/Team_photos/archive/2024-25/Management_team/Food_and_Finance_team/Abhishek_Singh_photo.jpeg" },
+            { "name": "Uttam Modi", "role": "Team Executive", "image": "/Team_photos/archive/2024-25/Management_team/Food_and_Finance_team/Uttam.jpeg" }
+          ]
+        },
+        {
+          "name": "Crowd Management Team",
+          "members": [
+            { "name": "Ripunjoy Kumar Pandey", "role": "Team Leader", "image": "/Team_photos/archive/2024-25/Management_team/Crowd_Management_team/Ripunjoy_photo.JPG" },
+            { "name": "Arunava", "role": "Team Executive", "image": null },
+            { "name": "Sardhak Nandam", "role": "Team Executive", "image": null },
+            { "name": "Suhas", "role": "Team Executive", "image": null }
+          ]
+        },
+        {
+          "name": "Anchoring Team",
+          "members": [
+            { "name": "Vijeta Moond", "role": "Team Leader", "image": "/Team_photos/archive/2024-25/Management_team/Anchoring_team/Vijeta_Moond_photo.jpeg" },
+            { "name": "Nikhilesh", "role": "Team Executive", "image": "/Team_photos/archive/2024-25/Management_team/Anchoring_team/Nikhilesh.jpeg" },
+            { "name": "Rhutika", "role": "Team Executive", "image": "/Team_photos/archive/2024-25/Management_team/Anchoring_team/Rhutika_Kshirsagar_photo.jpeg" }
+          ]
+        },
+        {
+          "name": "Examining Team",
+          "members": [
+            { "name": "Ankita Patra", "role": "Team Leader", "image": "/Team_photos/archive/2024-25/Management_team/Coordinators/Ankita_Patra_photo.jpeg" },
+            { "name": "Anish Medchalam", "role": "Team Executive", "image": "/Team_photos/archive/2024-25/Management_team/Examining_team/Anish_Medchalam_photo.jpeg" },
+            { "name": "Anjali", "role": "Team Executive", "image": "/Team_photos/archive/2024-25/Management_team/Examining_team/Anjali_Sharma_photo.jpeg" }
+          ]
+        }
+      ]
+    }
+  ]
+}
