@@ -78,26 +78,23 @@ A modern, responsive website for the National Service Scheme (NSS) at IIT Bhuban
 
 ```
 NSS-website/
-├── public/                 # Static files
-│   ├── Hero_section_home_photos/
-│   ├── Initiatives_photos/
-│   └── index.html
+├── public/                    # Static files, copied to build/ as-is
+│   ├── icons/                 # Favicon and app icons generated from the NSS logo
+│   ├── Team_photos/           # Current team photos; archive/<year>/ keeps past rosters (+ roster.json)
+│   ├── Hero_section_home_photos/, Initiatives_photos/, events_photos/, past_events_photos/
+│   ├── favicon.ico, og-image.png, manifest.json, robots.txt
+│   └── index.html             # Head metadata: favicon links, Open Graph tags, JSON-LD
 ├── src/
-│   ├── components/         # Reusable React components
-│   │   ├── Footer.js
-│   │   ├── Navbar.js
-│   │   └── ui/            # UI components
-│   ├── pages/             # Page components
-│   │   ├── HomePage.js
-│   │   ├── About.js
-│   │   ├── BlogPage.js
-│   │   └── TeamPage.js
-│   └── styles/            # CSS files
+│   ├── components/            # Navbar, Footer
+│   ├── data/team.js           # People shown on the Team page
+│   ├── pages/                 # HomePage, About, BlogPage, TeamPage
+│   ├── App.js                 # Routes (Bootstrap 5 CSS/JS is imported once here)
+│   └── index.js
 ├── backend/
-│   ├── server.js          # Express server
-│   ├── blogPosts.js       # Blog data
+│   ├── server.js              # Express server (registration email API)
+│   ├── blogPosts.js           # Blog data, written by the Google Form integration
 │   └── package.json
-├── google-form-integration/ # Google Apps Script integration
+├── google-form-integration/   # Google Apps Script integration
 └── package.json
 ```
 
@@ -122,8 +119,10 @@ NSS-website/
 - Modal views for detailed content
 
 ### Team Page
-- NSS team member profiles
-- Contact information
+- Faculty leadership (Dean of Student Affairs, NSS Programme Coordinator) and the team mentor
+- Edit `src/data/team.js` to change names, roles or bios; each entry's `image` points into `public/Team_photos/`
+- Drop a photo at that path and it appears automatically; until then a neutral placeholder is shown
+- When a new team takes over, move the old photos to `public/Team_photos/archive/<academic-year>/` and record the roster in a `roster.json` there (see `archive/2024-25/`)
 
 ## 🚀 Deployment
 
@@ -134,11 +133,11 @@ NSS-website/
    - Output directory: `build`
 3. Deploy automatically on push to main branch
 
-### Backend (Railway/Heroku)
-1. Create a new project
-2. Connect your repository
-3. Set environment variables
-4. Deploy the backend directory
+### Backend
+`vercel.json` builds `backend/server.js` with `@vercel/node` and routes `/api/*` to it, so the backend deploys with the frontend. `backend/node_modules` is not committed; Vercel installs it from `backend/package.json`.
+
+### Search and link previews
+The favicon set, `og-image.png`, `manifest.json` and the JSON-LD block in `public/index.html` were generated from `public/Navbar_photos/National-Service-Scheme-L.png`. The Open Graph and JSON-LD URLs are absolute, so update them if the site moves to a custom domain.
 
 ## 🧪 Development Best Practices
 
