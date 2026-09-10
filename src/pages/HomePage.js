@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Calendar, Users, Award, ArrowRight } from "lucide-react";
 import { Link } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './HomePage.css';
 
 const HomePage = () => {
@@ -190,7 +189,6 @@ const HomePage = () => {
   e.preventDefault();
   
   try {
-    console.log('Starting form submission...'); // Debug log
 
     // Enhanced validation
     if (!formData.name || !formData.email || !formData.phone || !formData.occupation || !formData.reason || !formData.availability) {
@@ -225,7 +223,6 @@ const HomePage = () => {
       Preferred Activities: ${formData.preferredActivities.join(', ')}
     `;
 
-    console.log('Sending request to:', '/api/send-registration'); // Debug log
 
     const response = await fetch('/api/send-registration', {
       method: 'POST',
@@ -239,10 +236,8 @@ const HomePage = () => {
       }),
     });
 
-    console.log('Response status:', response.status); // Debug log
     
     const data = await response.json();
-    console.log('Response data:', data); // Debug log
 
     if (!response.ok) {
       throw new Error(data.message || 'Failed to send registration');

@@ -1,0 +1,15 @@
+{
+  "name": "NSS IIT Bhubaneswar",
+  "short_name": "NSS IIT BBS",
+  "description": "National Service Scheme unit of the Indian Institute of Technology Bhubaneswar.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2e3191",
+  "icons": [
+    { "src": "favicon.ico", "sizes": "16x16 32x32 48x48", "type": "image/x-icon" },
+    { "src": "icons/favicon-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/favicon-512x512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/maskable-icon-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

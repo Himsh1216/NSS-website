@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Calendar, Eye, ArrowRight, MapPin, Clock, Search, Filter, X, Users, Target } from 'lucide-react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Calendar, Search, Users } from 'lucide-react';
+
+// Shown for posts without a usable photo: the branded share image served from public/.
+const EVENT_PLACEHOLDER = '/og-image.png';
+
+const postImage = (image) => (image && !image.includes('/api/placeholder') ? image : EVENT_PLACEHOLDER);
+
+const showFallbackImage = (e) => {
+  e.target.onerror = null;
+  e.target.src = EVENT_PLACEHOLDER;
+};
 
 const NSSBlog = () => {
   const [posts, setPosts] = useState([]);
@@ -44,7 +53,7 @@ const NSSBlog = () => {
   });
 
   return (
-    <div className="team-page py-5">
+    <div className="team-page pb-5">
       <div className="container">
         {/* Header Section */}
         <header className="text-center mb-5">
@@ -103,13 +112,11 @@ const NSSBlog = () => {
               <div className="card team-card h-100 shadow hover-lift">
                 <div className="position-relative">
                   <img
-                    src={post.image && !post.image.includes('/api/placeholder') ? post.image : 'https://via.placeholder.com/400x300?text=NSS+Event'}
+                    src={postImage(post.image)}
                     alt={post.imageAlt || post.title}
                     className="card-img-top team-image"
                     style={{ height: '300px', objectFit: 'cover' }}
-                    onError={(e) => {
-                      e.target.src = 'https://via.placeholder.com/400x300?text=NSS+Event';
-                    }}
+                    onError={showFallbackImage}
                   />
                   <div className="card-img-overlay gradient-overlay d-flex flex-column justify-content-between">
                     <div className="d-flex justify-content-end">
@@ -158,12 +165,10 @@ const NSSBlog = () => {
                   </div>
                   <div className="modal-body p-4">
                     <img
-                      src={selectedPost?.image && !selectedPost.image.includes('/api/placeholder') ? selectedPost.image : 'https://via.placeholder.com/600x400?text=NSS+Event'}
+                      src={postImage(selectedPost?.image)}
                       alt={selectedPost?.imageAlt || selectedPost?.title}
                       className="img-fluid rounded mb-4"
-                      onError={(e) => {
-                        e.target.src = 'https://via.placeholder.com/600x400?text=NSS+Event';
-                      }}
+                      onError={showFallbackImage}
                     />
                     
                     <div className="d-flex gap-3 mb-4">
@@ -205,6 +210,10 @@ const NSSBlog = () => {
         {/* CSS Styles */}
         <style>
           {`
+            .team-page {
+              padding-top: 170px; /* clears the 140px fixed navbar */
+            }
+
             .team-card {
               transition: transform 0.3s ease, box-shadow 0.3s ease;
               overflow: hidden;
