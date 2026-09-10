@@ -80,8 +80,21 @@ const TeamMemberCard = ({ member }) => {
                   </div>
                   <div className="col-md-8">
                     <h4 className="mb-1">{member.role}</h4>
-                    {member.school && <p className="text-secondary mb-3">{member.school}</p>}
-                    <p className="text-muted mb-0">{member.description}</p>
+                    {member.school && <p className="text-secondary mb-2">{member.school}</p>}
+                    {(member.email || member.profileUrl) && (
+                      <p className="small mb-3">
+                        {member.email && <a href={`mailto:${member.email}`}>{member.email}</a>}
+                        {member.email && member.profileUrl && <span className="mx-2 text-muted">·</span>}
+                        {member.profileUrl && (
+                          <a href={member.profileUrl} target="_blank" rel="noopener noreferrer">
+                            Faculty profile
+                          </a>
+                        )}
+                      </p>
+                    )}
+                    {[].concat(member.description).map((paragraph, index) => (
+                      <p key={index} className="text-muted">{paragraph}</p>
+                    ))}
                   </div>
                 </div>
               </div>
